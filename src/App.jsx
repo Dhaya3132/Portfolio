@@ -3,7 +3,7 @@ import Home from './page/home/Home'
 
 const App = () => {
   return (
-    <div className='font-Poppins'>
+    <div className='font-Poppins p-20 w-3/5 mx-auto'>
       <Home />
     </div>
   )
