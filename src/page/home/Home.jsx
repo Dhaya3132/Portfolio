@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="header_section flex items-center justify-betwee gap-5 pb-5">
+      <div className="font-Poppins header_section flex items-center justify-betwee gap-5 pb-5">
         <div className="header_title">
           <h2 className="font-bold text-5xl mb-2">Hi, I'm Dhayalan 👋</h2>
           <p className="font-normal text-xl mb-2 text-gray-900">
@@ -44,7 +44,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="profile_img w-40 h-38 rounded-full overflow-hidden">
+        <div className="font-Poppins profile_img w-40 h-38 rounded-full overflow-hidden">
           <img
             src="/assests/profile/profile_img.jpg"
             alt="Profile photo"
@@ -53,7 +53,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="about_section py-5">
+      <div className="font-Poppins about_section py-5">
         <h4 className="font-semibold text-xl mb-2">About</h4>
         <p className="mb-2 font-normal text-md text-gray-500 max-h-40">
           I’m a Frontend Developer with 2+ years of experience building
@@ -64,7 +64,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="work_Experience py-5">
+      <div className="font-Poppins work_Experience py-5">
         <h4 className="font-semibold text-xl">Work Experience</h4>
 
         <div className="work_experience_list flex flex-col gap-3 my-5">
@@ -121,7 +121,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="skills_section py-5">
+      <div className="font-Poppins skills_section py-5">
         <h4 className="font-semibold text-xl mb-2">Skills</h4>
         <div className="skills flex flex-wrap gap-1">
           {skillDataSet?.map((data) => (
@@ -132,7 +132,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="project_section py-10 mt-5">
+      <div className="font-Poppins project_section py-10 mt-5">
         <h4 className="font-semibold text-4xl mb-2 text-center">
           Check out my latest work
         </h4>
@@ -293,14 +293,16 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-10">
-        <h4 className="font-semibold text-4xl mb-4 text-center">
+      <div className="mt-10 flex w-full gap-4">
+        <h4 className="font-SchoolBell font-normal text-7xl text-end text-black w-1/2 px-2">
           I like building things Up!
         </h4>
-        <p className="mb-2 font-normal text-lg text-gray-500 max-h-40 text-center">
+        <p className="font-light italic text-lg text-gray-700 max-h-40 text-start w-1/2 font-Poppins">
           During my university days, I attended several technical training programs beyond my Electronics curriculum. These experiences broadened my perspective and helped me understand how practical learning and collaboration can turn ideas into real-world solutions.
         </p>
       </div>
+
+
     </div>
   );
 };
