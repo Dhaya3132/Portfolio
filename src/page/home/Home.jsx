@@ -2,10 +2,14 @@ import { useState } from "react";
 import { skillDataSet, workExperience } from "../../utils/json/data";
 import { FaGithub } from "react-icons/fa";
 import { PiLink } from "react-icons/pi";
+import CustomCursor from "../../components/Cursor";
 
 const Home = () => {
   const [isActive, setIsActive] = useState(null);
   const [showDesc, setShowDesc] = useState(null);
+  const [cursorType, setCursorType] = useState(null);
+  const [cursorLabel, setCursorLabel] = useState("");
+
 
   const handleShowExperienceDesc = (id) => {
     if (showDesc) {
@@ -35,20 +39,27 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div className="font-Poppins header_section flex items-center justify-betwee gap-5 pb-5">
+    <>
+   
+    <div className="h-screen">
+
+      <div className="font-Poppins header_section flex items-center justify-center gap-5">
         <div className="header_title">
           <h2 className="font-bold text-5xl mb-2">Hi, I'm Dhayalan 👋</h2>
-          <p className="font-normal text-xl mb-2 text-gray-900">
+          <p className="font-normal text-xl mb-2 text-gray-400">
             Frontend Engineer with a Growing Passion for Backend Systems.
           </p>
         </div>
 
-        <div className="font-Poppins profile_img w-40 h-38 rounded-full overflow-hidden">
+        <div 
+        className="custom-cursor-area font-Poppins profile_img w-40 h-38 rounded-full overflow-hidden" 
+        onMouseEnter={() => setCursorType("heart")}
+        onMouseLeave={() => setCursorType(null)}
+        >
           <img
             src="/assests/profile/profile_img.jpg"
             alt="Profile photo"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-full"
           />
         </div>
       </div>
@@ -67,19 +78,19 @@ const Home = () => {
       <div className="font-Poppins work_Experience py-5">
         <h4 className="font-semibold text-xl">Work Experience</h4>
 
-        <div className="work_experience_list flex flex-col gap-3 my-5">
+        <div className="work_experience_list flex flex-col gap-3 my-5 custom-cursor-area">
           {workExperience?.map((data) => (
             <>
               <div
                 className="company_list flex gap-5 cursor-pointer"
                 onClick={() => handleShowExperienceDesc(data?.id)}
-                onMouseEnter={() => setIsActive(data?.id)}
-                onMouseLeave={() => setIsActive(null)}
+                onMouseEnter={() => {setIsActive(data?.id); setCursorType("experience")}}
+                onMouseLeave={() => {setIsActive(null); setCursorType(null)}}
               >
                 <img
                   src={data?.image}
                   alt=""
-                  className="rounded-full w-12 h-12 border border-gray-100"
+                  className="rounded-full w-12 h-12 border border-gray-200"
                 />
 
                 <div>
@@ -121,11 +132,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="font-Poppins skills_section py-5">
+      <div className="font-Poppins skills_section py-5"> 
         <h4 className="font-semibold text-xl mb-2">Skills</h4>
-        <div className="skills flex flex-wrap gap-1">
+        <div className="skills flex flex-wrap gap-1 custom-cursor-area">
           {skillDataSet?.map((data) => (
-            <p className="bg-gray-50 border border-gray-200 rounded-lg text-gray-500 text-xs font-normal w-fit px-2 py-2 me-1">
+            <p 
+              onMouseEnter={() => {setCursorType("skills"); setCursorLabel(data);}}
+              onMouseLeave={() => {setCursorType(null); setCursorLabel(null);}}
+              className="bg-gray-50 border border-gray-200 rounded-lg text-gray-500 text-xs font-normal w-fit px-2 py-2 me-1">
               {data}
             </p>
           ))}
@@ -181,19 +195,17 @@ const Home = () => {
           </div>
           <div className="bg-white border border-gray-200 rounded h-80 w-78 p-2">
             <img
-              src="/assests/projects/image.png"
+              src="/assests/projects/prj2.png"
               alt="project01"
               className="h-32 rounded"
             />
 
             <p className="text-xs text-light mt-1 text-gray-500">
-              Frontend-only resume analyzer helping job seekers optimize ATS
-              compatibility by analyzing resumes against job descriptions with
-              skill and keyword insights.{" "}
+              Frontend-only e-commerce analytics tool helping businesses optimize conversion rates by analyzing product data against user behavior with sales and keyword insights.
             </p>
 
             <div className="flex gap-1 flex-wrap overflow-hidden mt-2 text-xs">
-              {["React JS", "JavaScript", "Word Analyzer", "HTML/CSS"].map(
+              {["React JS", "JavaScript", "Redux", "APIs", "HTML/CSS"].map(
                 (data, index) => (
                   <p
                     key={index}
@@ -293,17 +305,40 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-10 flex w-full gap-4">
-        <h4 className="font-SchoolBell font-normal text-7xl text-end text-black w-1/2 px-2">
-          I like building things Up!
+      <div className="mt-10">
+        <h4 className="text-start  text-4xl font-medium font-Poppins">
+          Get in Touch
         </h4>
-        <p className="font-light italic text-lg text-gray-700 max-h-40 text-start w-1/2 font-Poppins">
-          During my university days, I attended several technical training programs beyond my Electronics curriculum. These experiences broadened my perspective and helped me understand how practical learning and collaboration can turn ideas into real-world solutions.
-        </p>
+
+        <div className="mt-10 flex justify-center gap-5">
+          <div className="flex flex-col items-start justify-center text-start border-r-2 border-gray-200 pr-5">
+            <h2 className="font-SchoolBell text-6xl text-emerald-600">
+              building
+            </h2>
+            <h2 className="font-SchoolBell text-5xl">things up!</h2>
+          </div>
+          <div>
+          <p className="text-start text-3xl font-Poppins font-light text-gray-600">
+            Want to chat? Just shoot me a dm with a{" "}
+            <a
+              href="https://www.linkedin.com/in/dhayalan-nataraj-udhayakumar/"
+              className="text-blue-500"
+            >
+              direct question on linkedIn{" "}
+            </a>
+            and I'll respond whenever I can.
+          </p>
+        </div>
+        </div>
+
+        
+
       </div>
 
-
     </div>
+
+    <CustomCursor type={cursorType} label={cursorLabel} />  
+    </>
   );
 };
 

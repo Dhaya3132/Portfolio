@@ -9,3 +9,11 @@
   --font-Poppins: Poppins;
   --font-SchoolBell: "Handlee", serif;
 }
+
+body {
+  cursor: default;
+}
+
+.custom-cursor-area {
+  cursor: none;
+}
