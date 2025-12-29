@@ -43,7 +43,7 @@ const Experience = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="h-screen mt-10 md:mt-0 py-6"
+            className="h-screen mt-14 md:mt-0 py-6"
         >
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -130,7 +130,7 @@ const ExperienceItem = ({ data, index }) => {
                                 ))}
                             </ul>
 
-                            <div>
+                            <div className="mb-8">
                                 <h4 className="flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-500 mb-4">
                                     <FaCode /> Tech Stack
                                 </h4>

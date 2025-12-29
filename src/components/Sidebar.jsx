@@ -48,7 +48,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
           h-screen
           bg-white dark:bg-black
           border-r border-neutral-200 dark:border-white/10
-          transition-transform duration-300 ease-in-out
+          transition-transform duration-300 ease-in-out overflow-y-auto
           ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
             >
@@ -105,7 +105,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                     </nav>
 
                     {/* -------- Footer -------- */}
-                    <div className="mt-10 md:mt-0 space-y-6">
+                    <div className="mt-10 mb-5 md:mb-0 md:mt-0 space-y-6">
                         <div className="flex items-center justify-between">
                             {/* Socials */}
                             <div className="flex gap-6">

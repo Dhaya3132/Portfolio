@@ -51,7 +51,7 @@ const About = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="h-full mt-14 md:mt-0 flex flex-col justify-center max-w-2xl"
+            className="h-full mt-16 md:mt-0 flex flex-col justify-center max-w-2xl"
         >
             <motion.h2
                 variants={titleVariants}
