@@ -45,14 +45,14 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             <aside
                 className={`
           fixed inset-0 md:sticky md:top-0 z-40
-          h-screen
+          h-full
           bg-white dark:bg-black
           border-r border-neutral-200 dark:border-white/10
-          transition-transform duration-300 ease-in-out overflow-y-auto
+          transition-transform duration-300 ease-in-out 
           ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
             >
-                <div className="flex flex-col justify-between h-full p-8 md:p-12 max-w-sm mx-auto">
+                <div className="flex flex-col justify-between h-full overflow-y-auto overflow-hidden p-8 md:p-12 max-w-sm mx-auto">
                     {/* -------- Profile -------- */}
                     <div className="space-y-6 mt-16 md:mt-0">
                         <div className="w-full h-24 rounded-xl overflow-hidden grayscale">
@@ -105,7 +105,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                     </nav>
 
                     {/* -------- Footer -------- */}
-                    <div className="mt-10 mb-5 md:mb-0 md:mt-0 space-y-6">
+                    <div className="mt-10 md:mt-0 space-y-6">
                         <div className="flex items-center justify-between">
                             {/* Socials */}
                             <div className="flex gap-6">
