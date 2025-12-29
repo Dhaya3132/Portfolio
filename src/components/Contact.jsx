@@ -15,7 +15,7 @@ const Contact = () => {
             <div className="space-y-8 text-lg font-light">
                 <div className="group">
                     <p className="text-sm text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1">Email</p>
-                    <a href="mailto:dhayalan@example.com" className="text-2xl md:text-3xl hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-neutral-900 dark:text-white break-all">
+                    <a href="mailto:dhayalanu103@gmail.com" className="text-2xl md:text-3xl hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-neutral-900 dark:text-white break-all">
                         dhayalanu103@gmail.com
                     </a>
                 </div>
