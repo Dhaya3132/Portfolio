@@ -20,7 +20,7 @@ const Home = () => {
   };
 
   return (
-    <div className="custom-cursor-area cursor-none flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gray-50 dark:bg-black text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
+    <div className="custom-cursor-area cursor-none flex flex-col md:flex-row h-screen w-full overflow-hidden text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
       {/* Left Column - Sidebar */}
       <div className="w-full md:w-96 h-auto md:h-full flex-shrink-0 z-50">
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />

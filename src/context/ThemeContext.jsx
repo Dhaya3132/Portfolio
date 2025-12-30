@@ -4,6 +4,7 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState('dark');
+    const [bgColor, setBgColor] = useState('black');
 
     useEffect(() => {
         const root = window.document.documentElement;
@@ -16,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, bgColor, setBgColor }}>
             {children}
         </ThemeContext.Provider>
     );

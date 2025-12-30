@@ -13,7 +13,7 @@ import CustomCursor from './Cursor';
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
     const navItems = ['About', 'Experience', 'Projects', 'Contact'];
-    const { theme, toggleTheme } = useTheme();
+    const { theme, toggleTheme, bgColor, setBgColor } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -46,11 +46,12 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 className={`
           fixed inset-0 md:sticky md:top-0 z-40
           h-full
-          bg-white dark:bg-black
+          bg-white
           border-r border-neutral-200 dark:border-white/10
           transition-transform duration-300 ease-in-out 
           ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
+                style={{ backgroundColor: theme === 'dark' ? bgColor : undefined }}
             >
                 <div className="flex flex-col justify-between h-full overflow-y-auto overflow-hidden p-8 md:p-12 max-w-sm mx-auto">
                     {/* -------- Profile -------- */}
@@ -147,6 +148,32 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                             <CustomCursor type="experience" />
                         </div>
                     </div>
+
+                    {/* Color Picker (Dark Mode Only) */}
+                    {theme === 'dark' && (
+                        <div className="mt-6">
+                            <p className="text-sm text-neutral-500 mb-3 font-medium">Theme Colors</p>
+                            <div className="flex flex-wrap gap-3">
+                                {[
+                                    '#000000', // Black (Default)
+                                    '#0f172a', // Slate 900
+                                    '#1e1b4b', // Indigo 950
+                                    '#310B0B', // Dark Red
+                                    '#022c22', // Emerald 950
+                                    '#172554', // Blue 950
+                                ].map((color) => (
+                                    <button
+                                        key={color}
+                                        onClick={() => setBgColor(color)}
+                                        className={`w-6 h-6 rounded-full border border-white/20 transition-transform hover:scale-110 ${bgColor === color ? 'ring-2 ring-white ring-offset-2 ring-offset-black' : ''
+                                            }`}
+                                        style={{ backgroundColor: color }}
+                                        aria-label={`Select background color ${color}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </aside>
         </>
