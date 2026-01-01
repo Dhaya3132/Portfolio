@@ -5,6 +5,7 @@ import Experience from '../../components/Experience';
 import Projects from '../../components/Projects';
 import Contact from '../../components/Contact';
 import { AnimatePresence, motion } from 'framer-motion';
+import BackgroundPattern from '../../components/BackgroundPattern';
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState('About');
@@ -45,8 +46,8 @@ const Home = () => {
       </div>
 
       {/* Background Elements (Optional for "Futurist" feel) */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20">
-        {/* Subtle grain or grid could go here if requested, keeping it clean for now */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 text-neutral-900 dark:text-white">
+        <BackgroundPattern />
       </div>
     </div>
   );
