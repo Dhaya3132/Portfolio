@@ -116,7 +116,6 @@ const ProjectItem = ({ project, index }) => {
       "
         >
             <div className="flex flex-col md:flex-row gap-8 md:gap-14">
-                {/* Index & Year */}
                 <div className="w-full md:w-32 flex justify-between md:flex-col md:justify-start">
                     <span className="text-4xl font-bold text-neutral-300 dark:text-neutral-800 md:group-hover:text-green-500 transition-colors">
                         0{index + 1}
@@ -126,7 +125,6 @@ const ProjectItem = ({ project, index }) => {
                     </span>
                 </div>
 
-                {/* Main Content */}
                 <div className="flex-1 space-y-4">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <h3 className="text-3xl font-medium tracking-tight md:group-hover:underline underline-offset-4">
@@ -142,7 +140,6 @@ const ProjectItem = ({ project, index }) => {
                         {project.description}
                     </p>
 
-                    {/* Tech Stack */}
                     <div className="flex flex-wrap gap-3 pt-3">
                         {project.tech.map((tech, i) => (
                             <span
@@ -154,7 +151,6 @@ const ProjectItem = ({ project, index }) => {
                         ))}
                     </div>
 
-                    {/* Links */}
                     <div
                         className="
               flex gap-6 pt-4

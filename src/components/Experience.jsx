@@ -72,13 +72,11 @@ const ExperienceItem = ({ data, index }) => {
             transition={{ delay: index * 0.15 }}
             className="relative"
         >
-            {/* Timeline Dot */}
             <span
                 className={`absolute -left-[33px] top-4 w-3 h-3 rounded-full transition-colors duration-300 ${open ? 'bg-green-500 dark:bg-green-500' : 'bg-neutral-400 dark:bg-neutral-600'
                     }`}
             />
 
-            {/* Header */}
             <button
                 onClick={() => setOpen(!open)}
                 className="w-full text-left group"

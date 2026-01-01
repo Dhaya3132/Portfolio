@@ -18,7 +18,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
     return (
         <>
-            {/* ---------------- Mobile Header ---------------- */}
             <div className="md:hidden fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-white/10">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-neutral-200 dark:bg-neutral-800">
@@ -42,7 +41,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             </div>
 
 
-            {/* ---------------- Sidebar ---------------- */}
             <aside
                 className={`
           fixed inset-0 md:sticky md:top-0 z-40
@@ -55,7 +53,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 style={{ backgroundColor: theme === 'dark' ? bgColor : undefined }}
             >
                 <div className="flex flex-col justify-between h-full overflow-y-auto overflow-hidden p-8 md:p-12 max-w-sm mx-auto">
-                    {/* -------- Profile -------- */}
                     <div className="space-y-6 mt-16 md:mt-0">
                         <div className="w-full h-24 rounded-xl overflow-hidden grayscale">
                             <img
@@ -75,7 +72,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                         </div>
                     </div>
 
-                    {/* -------- Navigation -------- */}
                     <nav className="mt-10 md:mt-0 flex flex-col gap-6">
                         {navItems.map((item) => (
                             <button
@@ -93,7 +89,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                             >
                                 {item}
 
-                                {/* Active Indicator */}
                                 <span
                                     className={`absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-green-500 dark:bg-green-500 transition-all
                     ${activeSection === item
@@ -106,10 +101,8 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                         ))}
                     </nav>
 
-                    {/* -------- Footer -------- */}
                     <div className="mt-10 md:mt-0 space-y-6">
                         <div className="flex items-center justify-between">
-                            {/* Socials */}
                             <div className="flex gap-6">
                                 <a
                                     href="https://github.com/dhaya3132"
@@ -135,7 +128,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                                 </a>
                             </div>
 
-                            {/* Theme Toggle (Desktop only) */}
                             <button
                                 onClick={toggleTheme}
                                 className="cursor-none  hidden md:block text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
@@ -144,13 +136,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                             </button>
                         </div>
 
-                        {/* Custom Cursor */}
                         <div className="hidden md:block">
                             <CustomCursor type="experience" />
                         </div>
                     </div>
 
-                    {/* Color Picker (Dark Mode Only) */}
                     {theme === 'dark' && (
                         <div>
                             <p className="text-sm text-neutral-500 mb-3 font-medium">Theme Colors</p>
