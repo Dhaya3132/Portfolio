@@ -41,6 +41,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 </div>
             </div>
 
+
             {/* ---------------- Sidebar ---------------- */}
             <aside
                 className={`
@@ -151,7 +152,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
                     {/* Color Picker (Dark Mode Only) */}
                     {theme === 'dark' && (
-                        <div className="mt-6">
+                        <div>
                             <p className="text-sm text-neutral-500 mb-3 font-medium">Theme Colors</p>
                             <div className="flex flex-wrap gap-3">
                                 {[
@@ -165,7 +166,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                                     <button
                                         key={color}
                                         onClick={() => setBgColor(color)}
-                                        className={`w-6 h-6 rounded-full border border-white/20 transition-transform hover:scale-110 ${bgColor === color ? 'ring-2 ring-white ring-offset-2 ring-offset-black' : ''
+                                        className={`w-8 h-3 rounded transition-transform hover:scale-110 ${bgColor === color ? 'ring-1 ring-offset-1' : ''
                                             }`}
                                         style={{ backgroundColor: color }}
                                         aria-label={`Select background color ${color}`}
