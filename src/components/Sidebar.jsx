@@ -1,58 +1,120 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     FaGithub,
     FaLinkedin,
     FaEnvelope,
     FaSun,
     FaMoon,
-    FaBars,
-    FaTimes,
 } from 'react-icons/fa';
+import { FaHome, FaUser, FaBriefcase } from 'react-icons/fa';
+import { AiFillThunderbolt } from "react-icons/ai";
 import { useTheme } from '../context/ThemeContext';
 import CustomCursor from './Cursor';
+import { FiFolder } from "react-icons/fi";
+
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
-    const navItems = ['About', 'Experience', 'Projects', 'Contact'];
+    const navItems = ['About', 'Projects', 'Experience', 'Contact'];
+
+    const mobileNav = [
+        { id: 'About', icon: FaHome },
+        { id: 'Projects', icon: FiFolder },
+        { id: 'Profile', icon: AiFillThunderbolt },
+        { id: 'Experience', icon: FaBriefcase },
+        { id: 'Contact', icon: FaEnvelope },
+    ];
+
     const { theme, toggleTheme, bgColor, setBgColor } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobileNavVisible, setIsMobileNavVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+            setIsMobileNavVisible(!isBottom);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleNavigation = (section) => {
+
+        if (section === 'Profile') {
+            return;
+        }
+
+        setActiveSection(section);
+        document
+            .getElementById(section.toLowerCase())
+            ?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <>
-            <div className="md:hidden fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-white/10">
-                <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-neutral-200 dark:bg-neutral-800">
-                        <img
-                            src="/assests/profile/profile_img.jpg"
-                            alt="Profile"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                    <span className="font-semibold text-lg">Dhayalan</span>
-                </div>
+            {/* ================= MOBILE BOTTOM GLASS NAV ================= */}
+            <div
+                className={`md:hidden fixed bottom-4 left-1/2 -translate-x-1/2
+                           w-[90%] h-16 px-3
+                           flex items-center justify-between
+                           z-50
+                           rounded-full
+                           bg-white/30 dark:bg-black/30
+                           backdrop-blur-xl
+                           border border-white/30 dark:border-white/10
+                           shadow-full
+                           transition-transform duration-300 ease-in-out
+                           ${isMobileNavVisible ? 'translate-y-0' : 'translate-y-[200%]'}
+                           `}
+            >
+                {mobileNav.map(({ id, icon: Icon }) => {
+                    const isActive = activeSection === id;
 
-                <div className="flex items-center gap-4">
-                    <button onClick={toggleTheme}>
-                        {theme === 'dark' ? <FaSun color='orange' /> : <FaMoon color='black' />}
-                    </button>
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                        {isMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
-                    </button>
-                </div>
+                    return (
+                        <button
+                            key={id}
+                            onClick={() => handleNavigation(id)}
+                            className="relative flex items-center justify-center w-12 h-12"
+                        >
+                            {/* Active liquid glass */}
+                            {isActive && (
+                                <span
+                                    className="absolute inset-0 rounded-full
+                                               bg-white/50 dark:bg-white/5
+                                               backdrop-blur-xl
+                                               shadow-full transition-all border border-white/30 dark:border-white/10"
+                                />
+                            )}
+
+                            <Icon
+                                size={`${id === 'Profile' ? 24 : 22}`}
+                                color={`${id === 'Profile' && 'orange'}`}
+                                className={`relative z-10 transition-colors
+                                    ${isActive
+                                        ? 'text-black dark:text-white'
+                                        : 'text-neutral-500 dark:text-neutral-400'
+                                    }`}
+                            />
+                        </button>
+                    );
+                })}
             </div>
 
-
+            {/* ================= DESKTOP SIDEBAR ================= */}
             <aside
                 className={`
-          fixed inset-0 md:sticky md:top-0 z-40
-          h-full
-          bg-white
-          border-r border-neutral-200 dark:border-white/10
-          transition-transform duration-300 ease-in-out 
-          ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-        `}
+                    fixed inset-0 md:sticky md:top-0 z-40
+                    h-full
+                    bg-white
+                    border-r border-neutral-200 dark:border-white/10
+                    transition-transform duration-300 ease-in-out
+                    ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                `}
                 style={{ backgroundColor: theme === 'dark' ? bgColor : undefined }}
             >
-                <div className="flex flex-col justify-between h-full overflow-y-auto overflow-hidden p-8 md:p-12 max-w-sm mx-auto">
+                <div className="flex flex-col justify-between h-full overflow-y-auto p-8 md:p-12 max-w-sm mx-auto">
+
+                    {/* Profile */}
                     <div className="space-y-6 mt-16 md:mt-0">
                         <div className="w-full h-24 rounded-xl overflow-hidden grayscale">
                             <img
@@ -72,43 +134,43 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                         </div>
                     </div>
 
-                    <nav className="mt-10 md:mt-0 flex flex-col gap-6">
-                        {navItems.map((item) => (
-                            <button
-                                key={item}
-                                onClick={() => {
-                                    setActiveSection(item);
-                                    setIsMenuOpen(false);
-                                }}
-                                className={`cursor-none relative text-left text-2xl transition-colors w-max
-                  ${activeSection === item
-                                        ? 'text-black dark:text-white font-medium'
-                                        : 'text-neutral-400 hover:text-black dark:hover:text-white'
-                                    }
-                `}
-                            >
-                                {item}
+                    {/* Navigation */}
+                    <nav className="mt-10 flex flex-col gap-6">
+                        {navItems.map((item) => {
+                            const isActive = activeSection === item;
 
-                                <span
-                                    className={`absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-green-500 dark:bg-green-500 transition-all
-                    ${activeSection === item
-                                            ? 'opacity-100 scale-100'
-                                            : 'opacity-0 scale-0'
-                                        }
-                  `}
-                                />
-                            </button>
-                        ))}
+                            return (
+                                <button
+                                    key={item}
+                                    onClick={() => handleNavigation(item)}
+                                    className={`cursor-none relative text-left text-2xl w-max transition-colors
+                                        ${isActive
+                                            ? 'text-black dark:text-white font-medium'
+                                            : 'text-neutral-400 hover:text-black dark:hover:text-white'
+                                        }`}
+                                >
+                                    {item}
+
+                                    <span
+                                        className={`absolute -left-6 top-1/2 -translate-y-1/2
+                                            w-2 h-2 rounded-full bg-green-500 transition-all
+                                            ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
+                                        `}
+                                    />
+                                </button>
+                            );
+                        })}
                     </nav>
 
-                    <div className="mt-10 md:mt-0 space-y-6">
+                    {/* Footer */}
+                    <div className="space-y-6">
                         <div className="flex items-center justify-between">
                             <div className="flex gap-6">
                                 <a
                                     href="https://github.com/dhaya3132"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white"
                                 >
                                     <FaGithub size={20} />
                                 </a>
@@ -116,13 +178,13 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                                     href="https://www.linkedin.com/in/dhayalan-nataraj-udhayakumar"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white"
                                 >
                                     <FaLinkedin size={20} />
                                 </a>
                                 <a
                                     href="mailto:dhayalanu103@gmail.com"
-                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+                                    className="cursor-none text-neutral-400 hover:text-black dark:hover:text-white"
                                 >
                                     <FaEnvelope size={20} />
                                 </a>
@@ -130,9 +192,12 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
                             <button
                                 onClick={toggleTheme}
-                                className="cursor-none  hidden md:block text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+                                className="hidden md:block text-neutral-400 hover:text-black dark:hover:text-white"
                             >
-                                {theme === 'dark' ? <FaSun color='orange' /> : <FaMoon color='black' />}
+                                {theme === 'dark'
+                                    ? <FaSun color="orange" />
+                                    : <FaMoon color="black" />
+                                }
                             </button>
                         </div>
 
@@ -141,25 +206,28 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                         </div>
                     </div>
 
+                    {/* Theme Colors */}
                     {theme === 'dark' && (
                         <div>
-                            <p className="text-sm text-neutral-500 mb-3 font-medium">Theme Colors</p>
+                            <p className="text-sm text-neutral-500 mb-3 font-medium">
+                                Theme Colors
+                            </p>
                             <div className="flex flex-wrap gap-3">
                                 {[
-                                    '#000000', // Black (Default)
-                                    '#0f172a', // Slate 900
-                                    '#1e1b4b', // Indigo 950
-                                    '#310B0B', // Dark Red
-                                    '#022c22', // Emerald 950
-                                    '#172554', // Blue 950
+                                    '#000000',
+                                    '#0f172a',
+                                    '#1e1b4b',
+                                    '#310B0B',
+                                    '#022c22',
+                                    '#172554',
                                 ].map((color) => (
                                     <button
                                         key={color}
                                         onClick={() => setBgColor(color)}
-                                        className={`w-8 h-3 rounded transition-transform hover:scale-110 ${bgColor === color ? 'ring-1 ring-offset-1' : ''
-                                            }`}
+                                        className={`w-8 h-3 rounded transition-transform hover:scale-110
+                                            ${bgColor === color ? 'ring-1 ring-offset-1' : ''}
+                                        `}
                                         style={{ backgroundColor: color }}
-                                        aria-label={`Select background color ${color}`}
                                     />
                                 ))}
                             </div>

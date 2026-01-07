@@ -51,7 +51,7 @@ const About = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="h-full mt-16 md:mt-0 flex flex-col justify-center max-w-2xl"
+            className="h-full mt-3 md:mt-0 flex flex-col justify-start md:justify-center max-w-2xl"
         >
             <motion.h2
                 variants={titleVariants}
@@ -64,7 +64,7 @@ const About = () => {
                 ))}
             </motion.h2>
 
-            <motion.div className="space-y-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 font-light leading-relaxed transition-colors duration-300">
+            <motion.div className="space-y-6 text-md md:text-xl text-gray-700 dark:text-gray-300 font-light leading-relaxed transition-colors duration-300">
                 <motion.p variants={itemVariants}>
                     Frontend Developer with 2 years of hands-on experience building scalable, high-performance web applications for
                     retail and POS systems.
