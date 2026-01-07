@@ -11,6 +11,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { useTheme } from '../context/ThemeContext';
 import CustomCursor from './Cursor';
 import { FiFolder } from "react-icons/fi";
+import ProfileModal from './ProfileModal';
 
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
@@ -27,6 +28,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     const { theme, toggleTheme, bgColor, setBgColor } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileNavVisible, setIsMobileNavVisible] = useState(true);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,6 +43,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     const handleNavigation = (section) => {
 
         if (section === 'Profile') {
+            setIsProfileOpen(true);
             return;
         }
 
@@ -59,9 +62,9 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                            flex items-center justify-between
                            z-50
                            rounded-full
-                           bg-white/30 dark:bg-black/30
+                           bg-indigo-200 dark:bg-black/30
                            backdrop-blur-xl
-                           border border-white/30 dark:border-white/10
+                           border border-indigo-300 dark:border-white/10
                            shadow-full
                            transition-transform duration-300 ease-in-out
                            ${isMobileNavVisible ? 'translate-y-0' : 'translate-y-[200%]'}
@@ -92,7 +95,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                                 className={`relative z-10 transition-colors
                                     ${isActive
                                         ? 'text-black dark:text-white'
-                                        : 'text-neutral-500 dark:text-neutral-400'
+                                        : 'text-indigo-500 dark:text-neutral-400'
                                     }`}
                             />
                         </button>
@@ -235,6 +238,9 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                     )}
                 </div>
             </aside>
+
+            {/* Profile Modal */}
+            <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
         </>
     );
 };
