@@ -84,7 +84,7 @@ const Projects = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="min-h-screen mt-0 md:mt-0 py-8"
+            className="mt-0 md:mt-0 py-8"
         >
             <motion.h2
                 initial={{ opacity: 0, y: 24 }}

@@ -21,13 +21,13 @@ const Home = () => {
   };
 
   return (
-    <div className="custom-cursor-area cursor-none flex flex-col md:flex-row h-screen w-full overflow-hidden text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
+    <div className="m-3 md:m-5 flex flex-col gap-3 md:gap-5 md:flex-row h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)] text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
       <div className="w-full md:w-96 h-auto md:h-full flex-shrink-0 z-50">
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
       </div>
 
-      <div className="flex-1 h-full overflow-y-auto relative">
-        <div className="max-w-4xl mx-auto h-full p-6 md:p-12 lg:p-24">
+      <div className="relative flex-1 bg-white border border-neutral-200 rounded-3xl mb-0 md:mb-10 overflow-hidden">
+        <div className="p-4 md:p-6 h-full overflow-y-auto custom-scrollbar md:p-12 lg:p-24 pb-28 md:pb-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -43,9 +43,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 text-neutral-900 dark:text-white">
+      {/* <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 text-neutral-900 dark:text-white">
         <BackgroundPattern />
-      </div>
+      </div> */}
     </div>
   );
 };
