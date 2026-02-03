@@ -29,7 +29,6 @@ body {
   cursor: none;
 }
 
-/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
