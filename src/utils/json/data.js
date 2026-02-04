@@ -32,3 +32,39 @@ export const skillDataSet = [
   'Mongo DB',
   'Rest API'
 ]
+
+// src/data/techStack.js
+
+import reactBootstrap from "/assests/png/ReactBootstrap.png";
+import nodejs from "/assests/png/Nodejs.png"; 
+import materialUI from "/assests/png/MaterialUI.png";
+import github from "/assests/png/GitHub.png";
+import git from "/assests/png/Git.png";
+import figma from "/assests/png/Figma.png";
+import vscode from "/assests/png/Visual Studio Code (VS Code).png";
+import mongodb from "/assests/png/MongoDB.png";
+import redux from "/assests/png/icons8-redux-240.png";
+import express from "/assests/png/icons8-express-js-240.png";
+import bootstrap from "/assests/png/icons8-bootstrap-240.png";
+import tailwind from "/assests/png/icons8-tailwind-css-240.png";
+import atom from "/assests/png/atom.png";
+import css from "/assests/png/css-3.png";
+import html from "/assests/png/html-5.png";
+
+export const techStack = [
+  { label: "HTML5", icon: html },
+  { label: "CSS3", icon: css },
+  { label: "Bootstrap", icon: bootstrap },
+  { label: "Tailwind CSS", icon: tailwind },
+  { label: "Material UI", icon: materialUI },
+  { label: "React Bootstrap", icon: reactBootstrap },
+  { label: "Redux", icon: redux },
+  { label: "Node.js", icon: nodejs },
+  { label: "Express.js", icon: express },
+  { label: "MongoDB", icon: mongodb },
+  { label: "Git", icon: git },
+  { label: "GitHub", icon: github },
+  { label: "Figma", icon: figma },
+  { label: "VS Code", icon: vscode },
+  { label: "Atom", icon: atom },
+];

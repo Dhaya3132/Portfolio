@@ -69,10 +69,10 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                            w-[90%] h-16 px-3
                            flex items-center justify-between
                            z-50
-                           rounded-full
-                           
+                           rounded-3xl
+                           border border-gray-200
                            backdrop-blur-xl
-                           bg-yellow-50
+                           bg-gray-50
                            shadow-full
                            transition-transform duration-300 ease-in-out
                            ${isMobileNavVisible ? "translate-y-0" : "translate-y-[200%]"}
@@ -90,7 +90,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
               {/* Active liquid glass */}
               {isActive && (
                 <span
-                  className="absolute inset-0 rounded-full
+                  className="absolute inset-0 rounded-3xl
                                                bg-white/50 dark:bg-white/5
                                                backdrop-blur-xl
                                                shadow-full transition-all border border-white/30 dark:border-white/10"
@@ -104,7 +104,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                                     ${
                                       isActive
                                         ? "text-black dark:text-white"
-                                        : "text-yellow-300 dark:text-neutral-400"
+                                        : "text-gray-500 dark:text-neutral-400"
                                     }`}
               />
             </button>
