@@ -26,8 +26,8 @@ const Home = () => {
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
       </div>
 
-      <div className="relative flex-1 bg-white border border-neutral-200 rounded-3xl mb-0 md:mb-10 overflow-hidden">
-        <div className="p-4 w-full md:p-6 h-full overflow-y-auto custom-scrollbar md:p-12 lg:p-10 pb-28 md:pb-12">
+      <div className="relative flex-1 mb-0 md:mb-10 overflow-hidden">
+        <div className="w-full h-full overflow-y-auto custom-scrollbar pb-28 md:pb-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
