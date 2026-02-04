@@ -18,12 +18,19 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   const navItems = ["About", "Projects", "Experience", "Contact"];
 
   const mobileNav = [
-    { id: "About", icon: FaHome },
+    { id: "Home", icon: FaHome },
     { id: "Projects", icon: FiFolder },
     { id: "Profile", icon: AiFillThunderbolt },
     { id: "Experience", icon: FaBriefcase },
     { id: "Contact", icon: FaEnvelope },
   ];
+
+  const navIconMap = {
+    About: FaUser,
+    Projects: FiFolder,
+    Experience: FaBriefcase,
+    Contact: FaEnvelope,
+  };
 
   const { theme, toggleTheme, bgColor, setBgColor } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,10 +101,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 size={`${id === "Profile" ? 24 : 22}`}
                 color={`${id === "Profile" && "orange"}`}
                 className={`relative z-10 transition-colors
-                                    ${isActive
-                    ? "text-black dark:text-white"
-                    : "text-yellow-300 dark:text-neutral-400"
-                  }`}
+                                    ${
+                                      isActive
+                                        ? "text-black dark:text-white"
+                                        : "text-yellow-300 dark:text-neutral-400"
+                                    }`}
               />
             </button>
           );
@@ -141,18 +149,19 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             <AnimateSharedLayout>
               {navItems.map((item) => {
                 const isActive = activeSection === item;
+                const Icon = navIconMap[item];
 
                 return (
                   <button
                     key={item}
                     onClick={() => handleNavigation(item)}
-                    className="relative text-start text-md w-full h-11 px-2 overflow-hidden"
+                    className="relative flex items-center gap-1 text-start text-md w-full h-11 px-2 overflow-hidden"
                   >
                     {/* Active background */}
                     {isActive && (
                       <motion.div
                         layoutId="activeNav"
-                        className="absolute inset-0 bg-[#fedd4c] rounded-lg"
+                        className="absolute inset-0 bg-black border border-gray-200 rounded-lg"
                         transition={{
                           type: "tween",
                           stiffness: 500,
@@ -161,12 +170,23 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                       />
                     )}
 
+                    <Icon
+                      size={16}
+                      className={`relative z-10 transition-colors
+              ${
+                isActive
+                  ? "text-gray-100 ml-2 mr-2"
+                  : "text-neutral-400 group-hover:text-black dark:group-hover:text-white"
+              }`}
+                    />
+
                     {/* Text */}
                     <span
-                      className={`relative z-10 transition-colors duration-300 ${isActive
-                        ? "text-white pl-3 font-normal"
-                        : "text-neutral-400 hover:text-black dark:hover:text-white  font-light"
-                        }`}
+                      className={`relative z-10 transition-colors duration-300 ${
+                        isActive
+                          ? "text-white  font-normal"
+                          : "text-neutral-400 hover:text-black dark:hover:text-white  font-light"
+                      }`}
                     >
                       {item}
                     </span>
