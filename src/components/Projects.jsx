@@ -84,7 +84,7 @@ const Projects = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="mt-0 md:mt-0 py-8"
+            className="mt-0 md:mt-0 py-8 bg-white border border-neutral-200 rounded-3xl p-10 m-0"
         >
             <motion.h2
                 initial={{ opacity: 0, y: 24 }}
@@ -117,7 +117,7 @@ const ProjectItem = ({ project, index }) => {
         >
             <div className="flex flex-col md:flex-row gap-8 md:gap-14">
                 <div className="w-full md:w-32 flex justify-between md:flex-col md:justify-start">
-                    <span className="text-4xl font-bold text-neutral-300 dark:text-neutral-800 md:group-hover:text-green-500 transition-colors">
+                    <span className="text-4xl font-bold text-neutral-300 dark:text-neutral-800 md:group-hover:text-gray-500 transition-colors">
                         0{index + 1}
                     </span>
                     <span className="text-xs font-mono text-neutral-500 mt-1">

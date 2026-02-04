@@ -8,7 +8,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="h-full mt-5 md:mt-0 flex flex-col justify-start md:justify-center"
+            className="md:mt-0 flex flex-col justify-start md:justify-center bg-white border border-neutral-200 rounded-3xl p-5 md:p-10 m-0"
         >
             <h2 className="text-4xl md:text-6xl font-bold mb-12 tracking-tighter">Contact</h2>
 

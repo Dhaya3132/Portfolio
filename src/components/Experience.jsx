@@ -43,7 +43,7 @@ const Experience = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="h-screen mt-0 md:mt-0 py-6"
+            className="mt-0 md:mt-0 py-6 bg-white border border-neutral-200 rounded-3xl p-5 md:p-10 m-0"
         >
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}

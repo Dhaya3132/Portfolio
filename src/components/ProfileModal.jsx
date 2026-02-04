@@ -98,7 +98,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                                 Dhayalan N U
                             </h2>
                             <p className="text-lg text-neutral-400 mb-8 font-light">
-                                Associate Frontend Developer
+                                Software Engineer
                                 <br />
                                 <span className="text-sm opacity-70">@ Vasanth & Co</span>
                             </p>
@@ -130,7 +130,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                             </div>
 
                             {/* Theme Controls */}
-                            <div className="mt-8 w-full flex items-center gap-6 border-t border-white/10 pt-3">
+                            {/* <div className="mt-8 w-full flex items-center gap-6 border-t border-white/10 pt-3">
 
                                 <div className="flex items-center justify-start w-full">
                                     <button
@@ -168,7 +168,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                                         </div>
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
                         </motion.div>
                     )}
                 </motion.div>
