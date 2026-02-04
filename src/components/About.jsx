@@ -55,6 +55,7 @@ const About = () => {
       exit="exit"
       className="flex flex-col items-start justify-center "
     >
+      
       <div className="bg-white border border-neutral-200 rounded-3xl p-10 m-0">
         {/* Intro */}
         <motion.p
@@ -108,25 +109,6 @@ const About = () => {
           ))}
         </Marquee>
       </motion.div>
-
-      {/* Keywords Marquee */}
-      {/* <motion.div
-        variants={itemVariants}
-        className="mt-16 w-full"
-      >
-        <Marquee speed={60} gradient={false}>
-          {["Code", "Design", "Develop", "Review", "Analyze"].map(
-            (item, index) => (
-              <span
-                key={index}
-                className="mx-10 text-3xl font-medium text-gray-300 tracking-wide whitespace-nowrap"
-              >
-                {item}
-              </span>
-            ),
-          )}
-        </Marquee>
-      </motion.div> */}
 
       {/* About_Me */}
       <motion.div
@@ -221,6 +203,7 @@ const About = () => {
           </div>
         </div>
       </motion.div>
+
     </motion.div>
   );
 };
