@@ -202,10 +202,10 @@ const About = () => {
         variants={itemVariants}
         className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-5"
       >
-        <div className="mt-3 font-normal w-full text-md flex items-center justify-center gap-5">
+        <div className="mt-3 font-normal w-full flex flex-col md:flex-row items-center justify-start md:justify-center gap-5">
           <div>
-            <h5 className="font-semibold text-6xl mt-10">Let's Collaborate</h5>
-            <p className="py-3 w-96 text-gray-500">
+            <h5 className="font-semibold text-3xl md:text-6xl mt-10">Let's Collaborate</h5>
+            <p className="py-3 w-full md:w-96 text-gray-500 text-sm md:text-lg">
               I’m always excited to work on new and challenging projects.
               Whether you're looking to build a brand from the ground up,
               redesign your website, or create engaging digital experiences, I'm
@@ -215,7 +215,7 @@ const About = () => {
           <div>
             <img
               src="/assests/profile/image.png"
-              className="h-45 w-45"
+              className="h-25 md:h-45 w-25 md:w-45"
               alt=""
             />
           </div>
