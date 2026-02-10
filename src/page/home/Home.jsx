@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   return (
-    <div className="m-3 md:m-5 flex flex-col gap-3 md:gap-5 md:flex-row h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)] text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
+    <div className="m-3 md:m-0 flex flex-col gap-3 md:gap-5 md:flex-row h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)] text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
       
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
       
