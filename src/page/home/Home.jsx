@@ -22,11 +22,11 @@ const Home = () => {
 
   return (
     <div className="m-3 md:m-5 flex flex-col gap-3 md:gap-5 md:flex-row h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)] text-neutral-900 dark:text-white selection:bg-neutral-900 dark:selection:bg-white selection:text-white dark:selection:text-black transition-colors duration-300">
-      <div className="w-full md:w-96 h-auto md:h-full flex-shrink-0 z-50">
+      
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-      </div>
+      
 
-      <div className="relative flex-1 mb-0 md:mb-10 overflow-hidden">
+      <div className="w-full relative flex-1 mb-0 md:mb-10 overflow-hidden">
         <div className="w-full h-full overflow-y-auto custom-scrollbar pb-28 md:pb-12">
           <AnimatePresence mode="wait">
             <motion.div
