@@ -4,206 +4,100 @@ import { techStack } from "../utils/json/data";
 import Marquee from "react-fast-marquee";
 
 const About = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-    exit: { opacity: 0, transition: { duration: 0.3 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", damping: 12, stiffness: 100 },
-    },
-  };
-
-  const text = "About Me".split("");
-
   return (
     <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      className="flex flex-col items-start justify-center "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex flex-col gap-24 pt-10"
     >
-      
-      <div className="bg-white border border-neutral-200 rounded-3xl p-10 m-0">
-        {/* Intro */}
-        <motion.p
-          variants={itemVariants}
-          className="text-start font-SchoolBell text-3xl md:text-4xl text-gray-600 mb-6"
-        >
-          Hey there, I’m Dhayalan
-        </motion.p>
+      {/* Brutalist Hero */}
+      <section className="relative">
+        <div className="absolute -left-10 top-0 text-[180px] font-black text-white/5 select-none leading-none -z-10">
+          DHAYALAN
+        </div>
 
-        {/* Headline */}
-        <motion.h2
-          variants={itemVariants}
-          className=" text-start text-4xl md:text-7xl font-light text-gray-900 leading-tight w-full"
-        >
-          Engineering{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500 font-normal">
-            scalable web experiences
-          </span>
-        </motion.h2>
+        <div className="max-w-2xl">
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            className="inline-block bg-[#dfff00] text-black font-bold px-4 py-1 text-sm mb-8"
+          >
+            SYSTEM_STATUS: ACTIVE
+          </motion.div>
 
-        {/* Description */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-2 max-w-4xl text-start text-lg md:text-xl text-gray-500 leading-relaxed"
-        >
-          Frontend Developer with 2+ years of experience building scalable,
-          high-performance web applications for retail and POS systems.
-        </motion.p>
-      </div>
+          <h1 className="text-7xl md:text-9xl font-black text-distorted mb-8 leading-[0.85]">
+            BUILDING <br />
+            <span className="text-white/20">RAW</span> DIGITAL <br />
+            <span className="text-[#dfff00]">POWER</span>
+          </h1>
 
-      {/* Tech Stack */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-3"
-      >
-        <Marquee speed={40} gradient={false}>
+          <p className="text-xl md:text-2xl text-gray-400 font-medium leading-tight border-l-4 border-[#dfff00] pl-6 py-2">
+            Frontend Engineer specializing in high-performance web systems and
+            experimental UI architectures. Currently optimizing retail POS ecosystems.
+          </p>
+        </div>
+      </section>
+
+      {/* Tech Strip */}
+      <div className="border-t border-b border-[#1a1a1a] py-6 -mx-10 overflow-hidden">
+        <Marquee speed={60} gradient={false}>
           {techStack.map((item, index) => (
             <div
               key={index}
-              className="mx-4 flex items-center gap-3 rounded-xl px-5 py-3 bg-white/10 backdrop-blur border border-gray-100"
+              className="mx-12 flex items-center gap-4 group cursor-none"
             >
               <img
                 src={item.icon}
                 alt={item.label}
-                className="w-6 h-6 object-contain"
+                className="w-10 h-10 grayscale invert brightness-200 group-hover:grayscale-0 group-hover:invert-0 transition-all"
               />
-              <span className="text-sm text-gray-700 font-medium">
+              <span className="text-2xl font-black italic tracking-tighter opacity-10 group-hover:opacity-100 group-hover:text-[#dfff00] transition-all">
                 {item.label}
               </span>
             </div>
           ))}
         </Marquee>
-      </motion.div>
+      </div>
 
-      {/* About_Me */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-10"
-      >
-        <span className="p-2 bg-gray-200 border border-gray-300 rounded-xl font-normal px-4">
-          About Me
-        </span>
-
-        <div className="mt-3 font-normal text-md">
-          <p className="py-3">
-            Frontend Developer with 2 years of hands-on experience building
-            scalable, high-performance web applications for retail and POS
-            systems. Hands-on experience working with React.js and JavaScript
-            (ES6+), building reusable and responsive UI components using modern
-            React Hooks. Proficient in Redux, Redux-Saga, and REST API
-            integration, delivering production-ready features actively used
-            across 140+ retail stores.
+      {/* Staggered Blocks */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <motion.div
+          whileInView={{ y: 0, opacity: 1 }}
+          initial={{ y: 50, opacity: 0 }}
+          className="brutalist-card acid-border"
+        >
+          <span className="text-[10px] font-mono text-[#dfff00] mb-4 block">// PROTOCOL_01</span>
+          <h2 className="text-4xl font-black mb-6">Core Ethics</h2>
+          <p className="text-gray-400 leading-relaxed font-mono text-sm">
+            I believe in building software that doesn't just look good, but feels
+            physically robust. My approach bridges the gap between raw backend
+            logic and high-fidelity frontend execution.
           </p>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {/* Carrer Story */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-10"
-      >
-        <span className="p-2 bg-gray-200 border border-gray-300 rounded-xl font-normal px-4">
-          Story
-        </span>
-
-        <div className="mt-3 font-normal text-md">
-          <h5 className="font-semibold text-3xl mt-10">My Carrer Story</h5>
-          <p className="py-3">
-            Started my career by designing UI pages in Figma, which sparked my
-            interest in understanding UX and how designs turn into real
-            applications. This motivated me to learn web development and build
-            my own designed pages. Later, I joined a startup where I worked on
-            bug fixes, built scalable modules, and gained experience in
-            microservice architecture. I also collaborated with backend and
-            UI/UX teams to deliver seamless user interfaces.
+        <motion.div
+          whileInView={{ y: 0, opacity: 1 }}
+          initial={{ y: 100, opacity: 0 }}
+          className="brutalist-card mt-0 md:mt-20 border-white/10"
+        >
+          <span className="text-[10px] font-mono text-white/30 mb-4 block">// PROTOCOL_02</span>
+          <h2 className="text-4xl font-black mb-6">Experience</h2>
+          <p className="text-gray-400 leading-relaxed font-mono text-sm">
+            2+ years deep in reactive systems. Scaling POS platforms for 140+
+            nodes. Architecture is the foundation of digital experience.
           </p>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
-      {/* Tech Stack */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-10"
-      >
-        <span className="p-2 bg-gray-200 border border-gray-300 rounded-xl font-normal px-4">
-          Tech Stack
-        </span>
-
-        <div className="mt-3 font-normal text-md">
-          <h5 className="font-semibold text-3xl mt-10">
-            Tech Stack Behind My Work
-          </h5>
-          <p className="py-3">
-            I’m skilled in HTML, CSS, JavaScript, React.js, Bootstrap, and
-            Tailwind CSS, with strong experience in responsive web design. I
-            have hands-on expertise in component development, state management
-            using Redux and Redux-Saga, and API integration. I also work closely
-            with design teams using Figma to ensure smooth design-to-development
-            execution.{" "}
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Let's Collbarate */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full mt-5 bg-white border border-neutral-200 rounded-3xl w-fit p-5"
-      >
-        <div className="mt-3 font-normal w-full flex flex-col md:flex-row items-center justify-start md:justify-center gap-5">
-          <div>
-            <h5 className="font-semibold text-3xl md:text-6xl mt-10">Let's Collaborate</h5>
-            <p className="py-3 w-full md:w-96 text-gray-500 text-sm md:text-lg">
-              I’m always excited to work on new and challenging projects.
-              Whether you're looking to build a brand from the ground up,
-              redesign your website, or create engaging digital experiences, I'm
-              here to help bring your vision to life.
-            </p>
-          </div>
-          <div>
-            <img
-              src="/assests/profile/image.png"
-              className="h-25 md:h-45 w-25 md:w-45"
-              alt=""
-            />
-          </div>
-        </div>
-      </motion.div>
-
+      {/* Unique CTA */}
+      <section className="py-20 text-center border-t border-[#1a1a1a] mb-20">
+        <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter">
+          NEED <span className="text-[#dfff00]">SUPPORT?</span>
+        </h2>
+        <button className="bg-white text-black font-black px-12 py-5 text-2xl hover:bg-[#dfff00] transition-colors shadow-[10px_10px_0px_rgba(255,255,255,0.1)] hover:shadow-[10px_10px_0px_rgba(223,255,0,0.5)]">
+          INIT_CONTACT();
+        </button>
+      </section>
     </motion.div>
   );
 };

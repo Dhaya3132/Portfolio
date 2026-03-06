@@ -1,48 +1,70 @@
 import { useEffect, useState } from "react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
-const CustomCursor = ({ type, label }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+const CustomCursor = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 200 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const move = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const moveMouse = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
-  if (!type) return null;
+    window.addEventListener("mousemove", moveMouse);
+    return () => window.removeEventListener("mousemove", moveMouse);
+  }, [mouseX, mouseY]);
 
   return (
-    <div
-      className="pointer-events-none fixed z-[9999] transition-transform duration-100"
-      style={{
-        left: position.x,
-        top: position.y,
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      {type === "heart" && <span className="text-pink-500 text-2xl">❤️</span>}
+    <>
+      {/* Outer Glow Ring */}
+      <motion.div
+        className="fixed top-0 left-0 w-10 h-10 border border-[#dfff00]/30 pointer-events-none z-[9999]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
 
-      {type === "experience" && (
-        <svg
-          viewBox="0 0 16 16"
-          className="w-5 h-5 rotate-[-70deg] fill-blue-500"
-        >
-          <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
-        </svg>
-      )}
+      {/* Crosshair horizontal */}
+      <motion.div
+        className="fixed top-0 left-0 w-4 h-px bg-[#dfff00] pointer-events-none z-[9999]"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
 
-      {type === "skills" && (
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]" />
-          <span className="text-xs bg-black text-white px-2 py-1 rounded">
-            {label}
-          </span>
-        </div>
-      )}
-    </div>
+      {/* Crosshair vertical */}
+      <motion.div
+        className="fixed top-0 left-0 w-px h-4 bg-[#dfff00] pointer-events-none z-[9999]"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+
+      {/* Origin Point */}
+      <motion.div
+        className="fixed top-0 left-0 w-1 h-1 bg-[#dfff00] pointer-events-none z-[9999]"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+    </>
   );
 };
 
