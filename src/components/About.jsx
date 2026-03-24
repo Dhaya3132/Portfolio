@@ -27,11 +27,11 @@ const About = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="btn-primary flex items-center gap-2 group w-fit">
+            <button className="w-full md:w-fit btn-primary flex justify-center md:justify-start items-center gap-2 group w-fit">
               View Work
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors w-fit">
+            <button className="w-full md:w-fit text-center md:text-left px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors w-fit">
               Contact Me
             </button>
           </div>
