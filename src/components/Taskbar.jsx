@@ -26,7 +26,7 @@ const Taskbar = ({ activeSection, setActiveSection }) => {
                         <button
                             key={item.name}
                             onClick={() => setActiveSection(item.name)}
-                            className={`group relative w-14 h-14 flex flex-col items-center justify-center rounded-full transition-all duration-300 ${isActive ? 'bg-[var(--color-surface)] text-[var(--color-accent)]' : 'text-gray-500 hover:text-white hover:bg-white/5'
+                            className={`glassMorp group relative w-14 h-14 flex flex-col items-center justify-center rounded-full transition-all duration-300 ${isActive ? 'bg-[var(--color-surface)] text-[var(--color-accent)]' : 'text-gray-500 hover:text-white hover:bg-white/5'
                                 }`}
                         >
                             <div className="flex flex-col items-center">

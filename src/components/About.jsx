@@ -16,7 +16,7 @@ const About = () => {
           <div className="inline-block border border-[var(--color-accent)] text-[var(--color-accent)] px-4 py-1.5 text-xs font-semibold tracking-wider mb-8 rounded-full uppercase">
             Creative Developer
           </div>
-          <p className="text-2xl md:text-7xl font-serif font-light leading-[1.1]">I'm Dhayalan</p>
+          <p className="text-5xl md:text-7xl font-serif font-light leading-[1.1]">I'm Dhayalan</p>
           <h1 className="text-5xl md:text-7xl font-serif font-semibold mb-6 leading-[1.1]">
             Crafting Digital <br />
             <span className="text-[var(--color-text-muted)] italic">Experiences.</span>
