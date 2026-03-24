@@ -47,10 +47,6 @@ h6 {
   font-family: var(--font-serif);
 }
 
-.btn-primary {
-  @apply rounded-full bg-[var(--color-accent)] text-white px-8 py-3 font-medium transition-all duration-300 hover:bg-[var(--color-accent-hover)];
-}
-
 .btn-secondary {
   @apply rounded-full bg-white text-[var(--color-text-dark)] px-8 py-3 font-medium transition-all duration-300 hover:bg-gray-100 flex items-center justify-center gap-2;
 }

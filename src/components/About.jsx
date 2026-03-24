@@ -39,30 +39,34 @@ const About = () => {
       </div>
 
       {/* Right Side: Light / Beige Image Area */}
-      <div className="w-full lg:w-1/2 flex items-start justify-start relative overflow-hidden">
+      <div className="lg:w-1/2 flex items-start justify-start relative overflow-hidden">
 
-        <div className="m-3 border-1 border-[var(--color-accent-hover)] p-2" style={{ borderRadius: "30% 70% 50% 24%" }}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="relative w-full max-w-md aspect-[3/3] overflow-hidden shadow-1xl"
-            style={{ borderRadius: "30% 70% 50% 24%" }}
-          >
-            {/* Placeholder for portrait image */}
-            {/* <div className="absolute inset-0 bg-[#D9CDBF] mix-blend-multiply opacity-20 z-10"></div> */}
-
-
-            <img
-              src="/assests/profile/hero_section.jpeg"
-              alt="Portrait"
-              className="w-full h-full object-cover"
-            />
+        <div className="mx-auto">
+          <div className="m-3 border-1 border-[var(--color-accent-hover)] p-2" style={{ borderRadius: "30% 70% 50% 24%" }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className="relative w-full max-w-md aspect-[3/3] overflow-hidden shadow-1xl"
+              style={{ borderRadius: "30% 70% 50% 24%" }}
+            >
+              {/* Placeholder for portrait image */}
+              {/* <div className="absolute inset-0 bg-[#D9CDBF] mix-blend-multiply opacity-20 z-10"></div> */}
 
 
-          </motion.div>
+              <img
+                src="/assests/profile/hero_section.jpeg"
+                alt="Portrait"
+                className="w-full h-full object-cover"
+              />
 
+
+            </motion.div>
+
+          </div>
         </div>
+
+
 
       </div>
 

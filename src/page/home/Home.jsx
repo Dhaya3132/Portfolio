@@ -6,6 +6,7 @@ import Projects from '../../components/Projects';
 import Contact from '../../components/Contact';
 import BackgroundPattern from '../../components/BackgroundPattern';
 import SkillSet from '../../components/SkillSet';
+import Personal from '../../components/Personal';
 const Home = () => {
   const [activeSection, setActiveSection] = useState('About');
   const containerRef = useRef(null);
@@ -44,15 +45,26 @@ const Home = () => {
 
       <main className="w-full relative z-10">
 
+
+
         <section id="about" className="min-h-screen">
           <About />
         </section>
+
+
 
         <section id="skillset">
           <SkillSet />
         </section>
 
+
+
         <div className="container mx-auto max-w-5xl px-4 py-5">
+
+          <section id="personal">
+            <Personal />
+          </section>
+
           <section id="experience" className="py-24">
             <Experience />
           </section>
@@ -76,10 +88,14 @@ const Home = () => {
             </div>
           </section>
 
-          <section id="contact" className="py-24">
-            <Contact />
-          </section>
+
+
+
         </div>
+
+        <section id="contact" >
+          <Contact />
+        </section>
 
       </main>
 
