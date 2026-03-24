@@ -62,8 +62,17 @@ const Home = () => {
           </section>
 
           <section>
-            <div className="flex justify-center text-6xl md:text-9xl py-5 md:py-20 text-gray-100 text-center font-serif" >
-              The real skill in coding is figuring things out when nothing makes sense.
+            <div className="flex flex-wrap justify-start md:justify-center text-6xl md:text-9xl py-5 md:py-20 text-gray-100 text-start md:text-center font-serif leading-tight">
+              {"The real skill in coding is figuring things out when nothing makes sense."
+                .split(" ")
+                .map((word, index) => (
+                  <span
+                    key={index}
+                    className="mx-2 cursor-default transition-colors duration-300 hover:text-[var(--color-accent)] hover:italic"
+                  >
+                    {word}
+                  </span>
+                ))}
             </div>
           </section>
 
