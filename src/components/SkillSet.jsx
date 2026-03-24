@@ -17,15 +17,15 @@ const SkillSet = () => {
                         className="relative group flex items-center justify-center gap-3 mx-4 px-5 py-3 
                rounded-full bg-white/5 backdrop-blur-md border border-white/10
                opacity-50 hover:opacity-100 transition-all duration-300
-               overflow-hidden cursor-pointer"
+               overflow-hidden cursor-pointer shine-effect "
                     >
 
-                        <span
+                        {/* <span
                             className="absolute inset-0 before:absolute before:inset-0 
                  before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent
                  before:translate-x-[-100%] group-hover:before:translate-x-[100%]
                  before:transition-transform before:duration-700"
-                        ></span>
+                        ></span> */}
 
                         {/* Content */}
                         <img

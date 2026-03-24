@@ -41,15 +41,36 @@ const Experience = () => {
 
     return (
         <section className="w-full">
-            <motion.h2
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl font-serif font-semibold mb-16 tracking-tight text-white"
-            >
-                Work <span className="text-[var(--color-accent)] italic">History</span>
-            </motion.h2>
+
+            <div className="relative inline-block mb-10">
+                <motion.h2
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="text-4xl md:text-5xl font-serif font-semibold tracking-tight text-white"
+                >
+                    Work <span className="text-[var(--color-accent)] italic">History</span>
+                </motion.h2>
+
+                <motion.svg
+                    className="absolute -bottom-2 left-0 w-full h-4 text-[var(--color-accent)]"
+                    viewBox="0 0 200 12"
+                    preserveAspectRatio="none"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <path
+                        d="M2 8.5C50 2 150 2 198 8.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                    />
+                </motion.svg>
+            </div>
+
 
             <div className="flex flex-col border-t border-[var(--color-divider)]">
                 {experiences.map((exp, index) => (
@@ -94,9 +115,13 @@ const Experience = () => {
 
                             <div className="flex flex-wrap gap-2 pt-4">
                                 {exp.tech.map((tech, i) => (
-                                    <span key={i} className="text-xs font-sans font-medium px-3 py-1 bg-white/5 border border-white/10 text-[var(--color-text-light)] rounded-full">
-
-                                        {tech}
+                                    <span
+                                        key={i}
+                                        className="relative overflow-hidden shine-effect text-xs font-sans font-medium px-3 py-1 
+             bg-white/5 border border-white/10 text-[var(--color-text-light)] 
+             rounded-full cursor-default transition-all duration-300"
+                                    >
+                                        <span className="relative z-10">{tech}</span>
                                     </span>
                                 ))}
                             </div>

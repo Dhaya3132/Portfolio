@@ -16,7 +16,7 @@ const About = () => {
           <div className="inline-block border border-[var(--color-accent)] text-[var(--color-accent)] px-4 py-1.5 text-xs font-semibold tracking-wider mb-8 rounded-full uppercase">
             Creative Developer
           </div>
-
+          <p className="text-2xl md:text-7xl font-serif font-light leading-[1.1]">I'm Dhayalan</p>
           <h1 className="text-5xl md:text-7xl font-serif font-semibold mb-6 leading-[1.1]">
             Crafting Digital <br />
             <span className="text-[var(--color-text-muted)] italic">Experiences.</span>
@@ -39,15 +39,15 @@ const About = () => {
       </div>
 
       {/* Right Side: Light / Beige Image Area */}
-      <div className="w-full lg:w-1/2 flex items-start justify-start relative overflow-hidden ">
+      <div className="w-full lg:w-1/2 flex items-start justify-start relative overflow-hidden">
 
-        <div className="m-3 border-1 border-[var(--color-accent-hover)] p-2" style={{ borderRadius: "30% 70% 50% 0%" }}>
+        <div className="m-3 border-1 border-[var(--color-accent-hover)] p-2" style={{ borderRadius: "30% 70% 50% 24%" }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="relative w-full max-w-md aspect-[3/3] overflow-hidden shadow-1xl"
-            style={{ borderRadius: "30% 70% 50% 0%" }}
+            style={{ borderRadius: "30% 70% 50% 24%" }}
           >
             {/* Placeholder for portrait image */}
             {/* <div className="absolute inset-0 bg-[#D9CDBF] mix-blend-multiply opacity-20 z-10"></div> */}
@@ -59,8 +59,11 @@ const About = () => {
               className="w-full h-full object-cover"
             />
 
+
           </motion.div>
+
         </div>
+
       </div>
 
     </div>
