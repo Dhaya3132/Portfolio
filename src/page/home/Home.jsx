@@ -7,6 +7,7 @@ import Contact from '../../components/Contact';
 import BackgroundPattern from '../../components/BackgroundPattern';
 import SkillSet from '../../components/SkillSet';
 import Personal from '../../components/Personal';
+import Blogs from '../../components/Blogs';
 const Home = () => {
   const [activeSection, setActiveSection] = useState('About');
   const containerRef = useRef(null);
@@ -88,9 +89,15 @@ const Home = () => {
             </div>
           </section>
 
+          <section id="blogs" className="py-24">
+            <Blogs />
+          </section>
+
           <section id="contact" className="py-24">
             <Contact />
           </section>
+
+
 
 
 
