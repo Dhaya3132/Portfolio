@@ -62,7 +62,7 @@ const Home = () => {
           </section>
 
           <section>
-            <div className="flex justify-center text-4xl md:text-9xl py-20 text-gray-100 text-center font-serif" >
+            <div className="flex justify-center text-6xl md:text-9xl py-5 md:py-20 text-gray-100 text-center font-serif" >
               The real skill in coding is figuring things out when nothing makes sense.
             </div>
           </section>
