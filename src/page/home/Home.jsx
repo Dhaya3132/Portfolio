@@ -61,6 +61,12 @@ const Home = () => {
             <Projects />
           </section>
 
+          <section>
+            <div className="flex justify-center text-4xl md:text-9xl py-20 text-gray-100 text-center font-serif" >
+              The real skill in coding is figuring things out when nothing makes sense.
+            </div>
+          </section>
+
           <section id="contact" className="py-24">
             <Contact />
           </section>
