@@ -88,14 +88,14 @@ const Home = () => {
             </div>
           </section>
 
+          <section id="contact" className="py-24">
+            <Contact />
+          </section>
 
 
 
         </div>
 
-        <section id="contact" >
-          <Contact />
-        </section>
 
       </main>
 
