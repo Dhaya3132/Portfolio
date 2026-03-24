@@ -1,104 +1,69 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { techStack } from "../utils/json/data";
-import Marquee from "react-fast-marquee";
+import { FiArrowRight } from "react-icons/fi";
 
 const About = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex flex-col gap-24 pt-10"
-    >
-      {/* Brutalist Hero */}
-      <section className="relative">
-        <div className="absolute -left-10 top-0 text-[180px] font-black text-white/5 select-none leading-none -z-10">
-          DHAYALAN
-        </div>
+    <div className="w-full min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-evenly" >
+      {/* Left Side: Dark Content */}
+      <div className="w-full lg:w-1/2 bg-[var(--color-primary)] text-white flex flex-col justify-center px-8 lg:px-20 py-20 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-xl mx-auto lg:mx-0"
+        >
+          <div className="inline-block border border-[var(--color-accent)] text-[var(--color-accent)] px-4 py-1.5 text-xs font-semibold tracking-wider mb-8 rounded-full uppercase">
+            Creative Developer
+          </div>
 
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            className="inline-block bg-[#dfff00] text-black font-bold px-4 py-1 text-sm mb-8"
-          >
-            SYSTEM_STATUS: ACTIVE
-          </motion.div>
-
-          <h1 className="text-7xl md:text-9xl font-black text-distorted mb-8 leading-[0.85]">
-            BUILDING <br />
-            <span className="text-white/20">RAW</span> DIGITAL <br />
-            <span className="text-[#dfff00]">POWER</span>
+          <h1 className="text-5xl md:text-7xl font-serif font-semibold mb-6 leading-[1.1]">
+            Crafting Digital <br />
+            <span className="text-[var(--color-text-muted)] italic">Experiences.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 font-medium leading-tight border-l-4 border-[#dfff00] pl-6 py-2">
-            Frontend Engineer specializing in high-performance web systems and
-            experimental UI architectures. Currently optimizing retail POS ecosystems.
+          <p className="text-lg md:text-xl text-[var(--color-text-light)] opacity-80 font-normal leading-relaxed mb-12 max-w-lg font-sans">
+            Specializing in high-performance web systems and clean UI architectures. Building software that scales effortlessly without the noise.
           </p>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="btn-primary flex items-center gap-2 group w-fit">
+              View Work
+              <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors w-fit">
+              Contact Me
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Right Side: Light / Beige Image Area */}
+      <div className="w-full lg:w-1/2 flex items-start justify-start relative overflow-hidden ">
+
+        <div className="m-3 border-1 border-[var(--color-accent-hover)] p-2" style={{ borderRadius: "30% 70% 50% 0%" }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="relative w-full max-w-md aspect-[3/3] overflow-hidden shadow-1xl"
+            style={{ borderRadius: "30% 70% 50% 0%" }}
+          >
+            {/* Placeholder for portrait image */}
+            {/* <div className="absolute inset-0 bg-[#D9CDBF] mix-blend-multiply opacity-20 z-10"></div> */}
+
+
+            <img
+              src="/assests/profile/hero_section.jpeg"
+              alt="Portrait"
+              className="w-full h-full object-cover"
+            />
+
+          </motion.div>
         </div>
-      </section>
-
-      {/* Tech Strip */}
-      <div className="border-t border-b border-[#1a1a1a] py-6 -mx-10 overflow-hidden">
-        <Marquee speed={60} gradient={false}>
-          {techStack.map((item, index) => (
-            <div
-              key={index}
-              className="mx-12 flex items-center gap-4 group cursor-none"
-            >
-              <img
-                src={item.icon}
-                alt={item.label}
-                className="w-10 h-10 grayscale invert brightness-200 group-hover:grayscale-0 group-hover:invert-0 transition-all"
-              />
-              <span className="text-2xl font-black italic tracking-tighter opacity-10 group-hover:opacity-100 group-hover:text-[#dfff00] transition-all">
-                {item.label}
-              </span>
-            </div>
-          ))}
-        </Marquee>
       </div>
 
-      {/* Staggered Blocks */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <motion.div
-          whileInView={{ y: 0, opacity: 1 }}
-          initial={{ y: 50, opacity: 0 }}
-          className="brutalist-card acid-border"
-        >
-          <span className="text-[10px] font-mono text-[#dfff00] mb-4 block">// PROTOCOL_01</span>
-          <h2 className="text-4xl font-black mb-6">Core Ethics</h2>
-          <p className="text-gray-400 leading-relaxed font-mono text-sm">
-            I believe in building software that doesn't just look good, but feels
-            physically robust. My approach bridges the gap between raw backend
-            logic and high-fidelity frontend execution.
-          </p>
-        </motion.div>
-
-        <motion.div
-          whileInView={{ y: 0, opacity: 1 }}
-          initial={{ y: 100, opacity: 0 }}
-          className="brutalist-card mt-0 md:mt-20 border-white/10"
-        >
-          <span className="text-[10px] font-mono text-white/30 mb-4 block">// PROTOCOL_02</span>
-          <h2 className="text-4xl font-black mb-6">Experience</h2>
-          <p className="text-gray-400 leading-relaxed font-mono text-sm">
-            2+ years deep in reactive systems. Scaling POS platforms for 140+
-            nodes. Architecture is the foundation of digital experience.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Unique CTA */}
-      <section className="py-20 text-center border-t border-[#1a1a1a] mb-20">
-        <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter">
-          NEED <span className="text-[#dfff00]">SUPPORT?</span>
-        </h2>
-        <button className="bg-white text-black font-black px-12 py-5 text-2xl hover:bg-[#dfff00] transition-colors shadow-[10px_10px_0px_rgba(255,255,255,0.1)] hover:shadow-[10px_10px_0px_rgba(223,255,0,0.5)]">
-          INIT_CONTACT();
-        </button>
-      </section>
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,62 +1,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaLinkedin, FaGithub, FaTerminal } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Contact = () => {
     return (
-        <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="py-10 mb-40"
-        >
-            <h2 className="text-6xl md:text-8xl font-black mb-20 tracking-tighter">
-                INIT <span className="text-[#dfff00]">UP_LINK</span>
-            </h2>
+        <section className="w-full pb-32">
+            <motion.h2 
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl font-serif font-semibold mb-16 tracking-tight text-white"
+            >
+                Get In <span className="text-[var(--color-accent)] italic">Touch</span>
+            </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="brutalist-card border-[#dfff00]/20">
-                    <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
-                        <FaTerminal size={20} className="text-[#dfff00]" />
-                        DIRECT_CHANNELS
-                    </h3>
-
-                    <div className="space-y-6">
-                        <ContactLink
-                            icon={<FaEnvelope />}
-                            label="MAIL"
-                            value="dhayalanu103@gmail.com"
-                            link="mailto:dhayalanu103@gmail.com"
-                        />
-                        <ContactLink
-                            icon={<FaLinkedin />}
-                            label="L-IN"
-                            value="dhayalan-nataraj"
-                            link="https://www.linkedin.com/in/dhayalan-nataraj-udhayakumar"
-                        />
-                        <ContactLink
-                            icon={<FaGithub />}
-                            label="GIT"
-                            value="dhaya3132"
-                            link="https://github.com/dhaya3132"
-                        />
-                    </div>
-                </div>
-
-                <div className="brutalist-card bg-[#dfff00] text-black">
-                    <h3 className="text-2xl font-black mb-6 uppercase">Transmit Message</h3>
-                    <p className="font-mono text-sm font-bold mb-10 leading-tight">
-                        SYSTEM_OVERRIDE: I AM ACTIVELY SEEKING HIGH-STAKES FRONTEND ROLES.
-                        SECURE YOUR SYSTEM_SLOT NOW.
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8 }}
+                    className="flex flex-col"
+                >
+                    <h3 className="text-2xl font-serif font-semibold mb-6 text-white">Let's build something.</h3>
+                    <p className="text-lg text-[var(--color-text-light)] mb-10 leading-relaxed font-sans max-w-sm opacity-80">
+                        I am currently looking for new opportunities in frontend engineering. 
+                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
                     </p>
                     <a
                         href="mailto:dhayalanu103@gmail.com"
-                        className="inline-block border-2 border-black px-8 py-3 font-black hover:bg-black hover:text-[#dfff00] transition-all"
+                        className="btn-primary w-fit"
                     >
-                        PUSH_DATA();
+                        Say Hello
                     </a>
-                </div>
+                </motion.div>
+
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="flex flex-col justify-center space-y-6 md:pl-10 lg:border-l border-[var(--color-divider)]"
+                >
+                    <ContactLink
+                        icon={<FaEnvelope size={20} />}
+                        label="Email Address"
+                        value="dhayalanu103@gmail.com"
+                        link="mailto:dhayalanu103@gmail.com"
+                    />
+                    <ContactLink
+                        icon={<FaLinkedin size={20} />}
+                        label="LinkedIn Profile"
+                        value="dhayalan-nataraj"
+                        link="https://www.linkedin.com/in/dhayalan-nataraj-udhayakumar"
+                    />
+                    <ContactLink
+                        icon={<FaGithub size={20} />}
+                        label="GitHub Repositories"
+                        value="dhaya3132"
+                        link="https://github.com/dhaya3132"
+                    />
+                </motion.div>
             </div>
-        </motion.section>
+        </section>
     );
 };
 
@@ -65,14 +72,14 @@ const ContactLink = ({ icon, label, value, link }) => (
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-4 group"
+        className="flex items-center gap-6 group p-4 -mx-4 rounded-xl hover:bg-[var(--color-surface)] transition-colors duration-300"
     >
-        <div className="w-10 h-10 border border-[#1a1a1a] flex items-center justify-center text-gray-500 group-hover:border-[#dfff00] group-hover:text-[#dfff00] transition-all">
+        <div className="w-12 h-12 rounded-full border border-[var(--color-divider)] flex items-center justify-center text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300">
             {icon}
         </div>
         <div>
-            <p className="text-[10px] font-mono text-gray-600 mb-0.5">{label}</p>
-            <p className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{value}</p>
+            <p className="text-sm text-[var(--color-text-muted)] font-sans mb-1 uppercase tracking-wider">{label}</p>
+            <p className="text-lg font-serif text-white group-hover:text-[var(--color-accent)] transition-colors">{value}</p>
         </div>
     </a>
 );

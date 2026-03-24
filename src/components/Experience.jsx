@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 const Experience = () => {
     const experiences = [
         {
             id: '01',
-            role: 'Frontend Developer / React Developer',
+            role: 'Frontend Developer',
             company: 'Vasanth & Co Private Limited',
             subCompany: '(via Knowillence Pvt Ltd)',
             location: 'Chennai',
+            current: true,
             period: 'July 2025 - Present',
             project: 'Retail POS Platform (Microservices)',
             tech: ['React.js', 'Redux-Saga', 'Ant Design', 'Bootstrap'],
@@ -26,6 +28,7 @@ const Experience = () => {
             location: 'Coimbatore',
             period: 'Jun 2024 - Jun 2025',
             project: 'Retail POS Platform',
+            current: false,
             tech: ['React.js', 'Redux', 'Redux-Saga', 'Ant Design'],
             highlights: [
                 'Built POS solutions supporting 140+ retail stores.',
@@ -37,55 +40,76 @@ const Experience = () => {
     ];
 
     return (
-        <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="py-10"
-        >
-            <h2 className="text-6xl md:text-8xl font-black mb-20 tracking-tighter">
-                WORK <span className="text-[#dfff00]">LOGS</span>
-            </h2>
+        <section className="w-full">
+            <motion.h2
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl font-serif font-semibold mb-16 tracking-tight text-white"
+            >
+                Work <span className="text-[var(--color-accent)] italic">History</span>
+            </motion.h2>
 
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col border-t border-[var(--color-divider)]">
                 {experiences.map((exp, index) => (
-                    <div key={exp.id} className="relative group">
-                        <div className="absolute -left-4 top-0 w-1 h-full bg-[#1a1a1a] group-hover:bg-[#dfff00] transition-colors" />
+                    <motion.div
+                        key={exp.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="group relative flex flex-col md:flex-row justify-between py-10 border-b border-[var(--color-divider)] hover:bg-[var(--color-surface)] transition-colors duration-300 px-4 -mx-4 rounded-xl cursor-default"
+                    >
+                        {/* Period on desktop / Mobile top row */}
+                        <div className="md:w-1/4 mb-4 md:mb-0 flex-shrink-0 flex items-start gap-3">
+                            {exp.current && (
+                                <span className="relative flex h-3 w-3">
+                                    <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)]  opacity-75 animate-ping"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--color-accent)] animate-bounce"></span>
+                                </span>
+                            )}
+                            <span className="text-sm font-sans tracking-wide text-[var(--color-text-muted)] font-medium uppercase">
+                                {exp.period}
+                            </span>
+                        </div>
 
-                        <div className="brutalist-card acid-border ml-2">
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-                                <div>
-                                    <span className="text-[10px] font-mono text-[#dfff00] mb-2 block">// ID: {exp.id}</span>
-                                    <h3 className="text-3xl md:text-4xl font-black leading-none">{exp.role}</h3>
-                                    <p className="text-gray-500 font-mono text-sm mt-2">{exp.company} | {exp.location}</p>
-                                </div>
-                                <div className="text-right">
-                                    <span className="bg-[#1a1a1a] text-white px-3 py-1 text-[10px] font-mono whitespace-nowrap">
-                                        {exp.period}
-                                    </span>
-                                </div>
-                            </div>
+                        {/* Content */}
+                        <div className="md:w-2/4 pr-8">
+                            <h3 className="text-2xl font-serif font-semibold text-white mb-2 group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                                {exp.role}
+                            </h3>
+                            <p className="text-[var(--color-text-light)] text-lg mb-6">
+                                {exp.company} <span className="opacity-50">| {exp.location}</span>
+                            </p>
 
-                            <ul className="space-y-4 mb-8">
+                            <ul className="space-y-3 mb-6 hidden md:block group-hover:block transition-all duration-300">
                                 {exp.highlights.map((point, i) => (
-                                    <li key={i} className="flex gap-4 text-gray-400 text-sm font-mono leading-relaxed">
-                                        <span className="text-[#dfff00]">_</span>
+                                    <li key={i} className="flex gap-3 text-[var(--color-text-muted)] text-sm leading-relaxed">
+                                        <span className="text-[var(--color-accent)] opacity-50">•</span>
                                         {point}
                                     </li>
                                 ))}
                             </ul>
 
-                            <div className="flex flex-wrap gap-2 pt-4 border-t border-[#1a1a1a]">
+                            <div className="flex flex-wrap gap-2 pt-4">
                                 {exp.tech.map((tech, i) => (
-                                    <span key={i} className="text-[9px] font-mono border border-white/5 bg-white/5 px-2 py-0.5 text-gray-400 group-hover:text-white transition-colors">
+                                    <span key={i} className="text-xs font-sans font-medium px-3 py-1 bg-white/5 border border-white/10 text-[var(--color-text-light)] rounded-full">
+
                                         {tech}
                                     </span>
                                 ))}
                             </div>
                         </div>
-                    </div>
+
+                        {/* Arrow Icon */}
+                        <div className="md:w-1/4 flex justify-end items-start mt-6 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 text-[var(--color-accent)]">
+                            <FiArrowUpRight size={28} />
+                        </div>
+                    </motion.div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 };
 

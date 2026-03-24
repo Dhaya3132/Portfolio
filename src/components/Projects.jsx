@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
 
 const projects = [
     {
@@ -40,61 +40,80 @@ const projects = [
     }
 ];
 
+const ProjectCard = ({ project, index }) => {
+    return (
+        <motion.a
+            href={project.live || project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="group flex flex-col md:flex-row justify-between py-10 border-b border-[var(--color-divider)] hover:bg-[var(--color-surface)] transition-colors duration-300 px-4 -mx-4 rounded-xl cursor-pointer block"
+        >
+            {/* Year / ID */}
+            <div className="md:w-1/4 mb-4 md:mb-0 flex-shrink-0 flex items-center gap-4">
+                <span className="text-sm font-sans tracking-wide text-[var(--color-text-muted)] font-medium uppercase">
+                    {project.year}
+                </span>
+                <span className="text-xs font-mono text-gray-600 block md:hidden">
+                    {project.id}
+                </span>
+            </div>
+
+            {/* Title & Description */}
+            <div className="md:w-2/4 pr-8">
+                <h3 className="text-3xl font-serif font-semibold text-white mb-3 group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                    {project.title}
+                </h3>
+                <p className="text-[var(--color-text-light)] opacity-80 text-lg mb-6 leading-relaxed">
+                    {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, i) => (
+                        <span key={i} className="text-xs font-sans font-medium px-3 py-1 bg-white/5 border border-white/10 text-[var(--color-text-light)] rounded-full">
+                            {tech}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+            {/* Links / Arrow */}
+            <div className="md:w-1/4 flex flex-row md:flex-col justify-end items-end gap-4 mt-6 md:mt-0">
+                <div className="text-[var(--color-accent)] transform origin-top-right transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 group-hover:translate-x-1">
+                    <FiArrowUpRight size={32} />
+                </div>
+                {project.github && (
+                    <div className="text-[var(--color-text-muted)] hover:text-white transition-colors p-2" onClick={(e) => { e.stopPropagation(); window.open(project.github, '_blank'); }}>
+                        <FiGithub size={24} />
+                    </div>
+                )}
+            </div>
+        </motion.a>
+    );
+};
+
 const Projects = () => {
     return (
-        <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="py-10"
-        >
-            <h2 className="text-6xl md:text-8xl font-black mb-20 tracking-tighter">
-                ACTIVE <span className="text-[#dfff00]">BUILDS</span>
-            </h2>
+        <section className="w-full">
+            <motion.h2 
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl font-serif font-semibold mb-16 tracking-tight text-white"
+            >
+                Selected <span className="text-[var(--color-accent)] italic">Projects</span>
+            </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-[#1a1a1a]">
+            <div className="flex flex-col border-t border-[var(--color-divider)]">
                 {projects.map((project, index) => (
-                    <motion.article
-                        key={project.id}
-                        whileHover={{ backgroundColor: '#0c0c0c' }}
-                        className="p-10 border border-[#1a1a1a] group transition-all"
-                    >
-                        <div className="flex justify-between items-start mb-10">
-                            <span className="text-[10px] font-mono text-gray-500 group-hover:text-[#dfff00]">
-                                {project.id} // {project.year}
-                            </span>
-                            <div className="flex gap-4">
-                                {project.github && (
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#dfff00]">
-                                        <FaGithub size={18} />
-                                    </a>
-                                )}
-                                {project.live && (
-                                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-[#dfff00]">
-                                        <FaExternalLinkAlt size={16} />
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-
-                        <h3 className="text-4xl font-black mb-4 group-hover:translate-x-2 transition-transform duration-300">
-                            {project.title}
-                        </h3>
-
-                        <p className="text-gray-400 font-mono text-xs leading-relaxed mb-8 h-12 overflow-hidden">
-                            {project.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2">
-                            {project.tech.map((tech, i) => (
-                                <span key={i} className="text-[8px] font-mono bg-[#1a1a1a] px-2 py-0.5 text-gray-500">
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </motion.article>
+                    <ProjectCard key={project.id} project={project} index={index} />
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 };
 

@@ -21,9 +21,9 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Outer Glow Ring */}
+      {/* Outer elegant ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border border-[#dfff00]/30 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-8 h-8 border border-white/30 rounded-full pointer-events-none z-[9999]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -32,31 +32,9 @@ const CustomCursor = () => {
         }}
       />
 
-      {/* Crosshair horizontal */}
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-px bg-[#dfff00] pointer-events-none z-[9999]"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-
-      {/* Crosshair vertical */}
-      <motion.div
-        className="fixed top-0 left-0 w-px h-4 bg-[#dfff00] pointer-events-none z-[9999]"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-
       {/* Origin Point */}
       <motion.div
-        className="fixed top-0 left-0 w-1 h-1 bg-[#dfff00] pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
         style={{
           x: mouseX,
           y: mouseY,

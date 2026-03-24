@@ -1,104 +1,74 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @theme {
-  --font-syne: 'Syne', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --color-acid: #dfff00;
-  --color-charcoal: #080808;
-  --color-silver: #e2e2e2;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --color-primary: rgb(12, 12, 12);
+  --color-accent: #C79855;
+  --color-accent-hover: #b48545;
+  --color-light-bg: rgb(245, 245, 245);
+  --color-text-light: #DFDFDF;
+  --color-text-dark: #121212;
+  --color-divider: rgba(255, 255, 255, 0.1);
+  --color-divider-dark: rgba(0, 0, 0, 0.1);
 }
 
 :root {
-  --bg-color: var(--color-charcoal);
-  --accent-color: var(--color-acid);
+  --bg-color: var(--color-primary);
+  --accent-color: var(--color-accent);
 }
 
 body {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   background-color: var(--bg-color);
-  color: var(--color-silver);
+  color: var(--color-text-light);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  cursor: crosshair;
+  scroll-behavior: smooth;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-syne);
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-/* Unique Acid Cyber Utilities */
-
-.acid-border {
-  border: 1px solid rgba(223, 255, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-.acid-border:hover {
-  border: 1px solid var(--color-acid);
-  box-shadow: 0 0 20px rgba(223, 255, 0, 0.15);
+.btn-primary {
+  @apply rounded-full bg-[var(--color-accent)] text-white px-8 py-3 font-medium transition-all duration-300 hover:bg-[var(--color-accent-hover)];
 }
 
-.brutalist-card {
-  background: #0c0c0c;
-  border: 1px solid #1a1a1a;
-  padding: 2rem;
-  position: relative;
+.btn-secondary {
+  @apply rounded-full bg-white text-[var(--color-text-dark)] px-8 py-3 font-medium transition-all duration-300 hover:bg-gray-100 flex items-center justify-center gap-2;
 }
 
-.brutalist-card::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 10px;
-  height: 10px;
-  border-top: 1px solid var(--color-acid);
-  border-right: 1px solid var(--color-acid);
-}
-
-.text-distorted {
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.08em;
-}
-
-/* Custom "Mechanical" Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--color-charcoal);
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-acid);
-}
-
-.magnetic-item {
-  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.magnetic-item:hover {
-  color: var(--color-acid);
+  background: var(--color-accent);
 }
 
 .noise-overlay {
   position: fixed;
   inset: 0;
-  z-index: 100;
-  opacity: 0.05;
+  z-index: 50;
+  opacity: 0.04;
   pointer-events: none;
   background-image: url('https://grainy-gradients.vercel.app/noise.svg');
 }
