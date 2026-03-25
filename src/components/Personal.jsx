@@ -23,7 +23,7 @@ const Personal = () => {
                     .map((word, index) => (
                         <span
                             key={index}
-                            className="mx-2 cursor-default transition-colors duration-300 hover:text-[var(--color-accent)] hover:italic"
+                            className="mx-2 cursor-default transform transition-all duration-300 ease-in-out hover:text-[var(--color-accent)] hover:italic hover:scale-95"
                         >
                             {word}
                         </span>
