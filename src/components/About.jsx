@@ -31,8 +31,16 @@ const About = () => {
               View Work
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="w-full md:w-fit text-center md:text-left px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors w-fit">
-              Contact Me
+            <button
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/document/d/1ETYxsfHW7dLr_7NI3VUD2_qqLhLJ4mklH8CGt-vdf5g/edit?usp=sharing",
+                  "_blank"
+                )
+              }
+              className="w-full md:w-fit text-center md:text-left px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors"
+            >
+              Resume
             </button>
           </div>
         </motion.div>
