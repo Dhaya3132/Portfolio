@@ -38,7 +38,7 @@ const Blogs = () => {
                         "https://medium.com/@dhayalanu103/understanding-mcp-rag-and-ai-agents-the-backbone-of-modern-ai-systems-12631d67efc5",
                         "_blank"
                     )
-                } className="card border-1 border-gray-900 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-between">
+                } className="card border-1 border-[var(--color-divider)] hover:border-[var(--color-accent)] transition-all duration-300 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-between">
 
                     <div className='h-46 w-full rounded-2xl'>
                         <img src="/assests/company/blog1.webp" alt="" className='h-full w-full rounded-2xl' />
@@ -46,13 +46,35 @@ const Blogs = () => {
 
                     <div className='p-3'>
                         <p className='text-white text-2xl font-serif italic'>
-                            Understanding MCP, RAG, and AI Agents — The Backbone of Modern AI Systems
+                            Understanding MCP, RAG, and AI Agents — The Backbone of Modern AI Sys
                         </p>
                     </div>
 
                 </div>
 
-                <div className="card border-1 border-gray-900 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-center">
+
+
+
+                <div onClick={() =>
+                    window.open(
+                        "https://medium.com/@dhayalanu103/i-stumbled-across-googles-quantum-ai-chip-and-it-broke-my-brain-a-little-f264746a6bb0",
+                        "_blank"
+                    )
+                } className="card border-1 border-[var(--color-divider)] hover:border-[var(--color-accent)] transition-all duration-300 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-between">
+
+                    <div className='h-46 w-full rounded-2xl'>
+                        <img src="/assests/company/blog2.webp" alt="" className='h-full w-full rounded-2xl' />
+                    </div>
+
+                    <div className='p-3'>
+                        <p className='text-white text-2xl font-serif italic'>
+                            I stumbled across Google`s Quantum AI chip — and it broke my brain a little
+                        </p>
+                    </div>
+
+                </div>
+
+                <div className="card border-1 border-[var(--color-divider)] hover:border-[var(--color-accent)] transition-all duration-300 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-center">
 
                     <p className='text-3xl font-serif text-center italic'>Coming Soon...</p>
 
