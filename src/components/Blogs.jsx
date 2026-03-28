@@ -74,9 +74,22 @@ const Blogs = () => {
 
                 </div>
 
-                <div className="card border-1 border-[var(--color-divider)] hover:border-[var(--color-accent)] transition-all duration-300 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-center">
+                <div onClick={() =>
+                    window.open(
+                        "https://medium.com/@dhayalanu103/ai-model-vs-ai-agent-a-simple-real-world-explanation-f9c71d930a4d",
+                        "_blank"
+                    )
+                } className="card border-1 border-[var(--color-divider)] hover:border-[var(--color-accent)] transition-all duration-300 h-full md:h-80 w-full md:w-96 rounded-3xl p-2 flex flex-col justify-between">
 
-                    <p className='text-3xl font-serif text-center italic'>Coming Soon...</p>
+                    <div className='h-46 w-full rounded-2xl'>
+                        <img src="/assests/company/blog3.webp" alt="" className='h-full w-full rounded-2xl' />
+                    </div>
+
+                    <div className='p-3'>
+                        <p className='text-white text-2xl font-serif italic'>
+                            AI Model vs AI Agent — A Simple Real-World Explanation
+                        </p>
+                    </div>
 
                 </div>
 
