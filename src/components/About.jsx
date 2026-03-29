@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
+import ResumeModal from "./ResumeModal";
 
 const About = () => {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   return (
     <div className="w-full min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-evenly" >
       {/* Left Side: Dark Content */}
@@ -32,12 +34,7 @@ const About = () => {
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
-              onClick={() =>
-                window.open(
-                  "https://docs.google.com/document/d/1ETYxsfHW7dLr_7NI3VUD2_qqLhLJ4mklH8CGt-vdf5g/edit?usp=sharing",
-                  "_blank"
-                )
-              }
+              onClick={() => setIsResumeModalOpen(true)}
               className="w-full md:w-fit text-center md:text-left px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-colors"
             >
               Resume
@@ -78,6 +75,7 @@ const About = () => {
 
       </div>
 
+      <ResumeModal isOpen={isResumeModalOpen} onClose={() => setIsResumeModalOpen(false)} />
     </div>
   );
 };
