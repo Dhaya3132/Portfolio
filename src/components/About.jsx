@@ -81,7 +81,7 @@ const About = () => {
           onMouseLeave={() => setIsImageHovered(false)}
         >
           {/* Hand drawn Rotating Elements on Hover */}
-          <AnimatePresence>
+          {/* <AnimatePresence>
             {isImageHovered && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -89,7 +89,7 @@ const About = () => {
                 exit={{ opacity: 0 }}
                 className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
               >
-                {/* Orbit Container */}
+                
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -115,7 +115,7 @@ const About = () => {
                 </motion.div>
               </motion.div>
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
 
           <div className="relative z-10 m-3 border-1 border-[var(--color-accent-hover)] p-2 transition-transform duration-500 hover:scale-[1.02]" style={{ borderRadius: "30% 70% 50% 24%" }}>
             <motion.div

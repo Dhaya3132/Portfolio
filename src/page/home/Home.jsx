@@ -67,11 +67,11 @@ const Home = () => {
             <Personal />
           </section>
 
-          <section id="experience" className="py-24">
+          <section id="experience" className="py-16">
             <Experience />
           </section>
 
-          <section id="projects" className="py-24">
+          <section id="projects" className="py-16">
             <Projects />
           </section>
 
@@ -89,16 +89,16 @@ const Home = () => {
                 ))}
             </div>
           </section>
-          
-          <section id="designs" className="py-24">
+
+          <section id="designs" className="py-16">
             <FigmaDesigns />
           </section>
 
-          <section id="blogs" className="py-24">
+          <section id="blogs" className="py-16">
             <Blogs />
           </section>
 
-          <section id="contact" className="py-24">
+          <section id="contact" className="py-16">
             <Contact />
           </section>
 

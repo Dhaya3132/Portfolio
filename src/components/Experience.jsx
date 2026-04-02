@@ -40,7 +40,7 @@ const Experience = () => {
     ];
 
     return (
-        <section className="w-full">
+        <section className="relative w-full">
 
             <div className="relative inline-block mb-10">
                 <motion.h2
@@ -133,6 +133,10 @@ const Experience = () => {
                         </div>
                     </motion.div>
                 ))}
+            </div>
+
+            <div className="absolute top-0 right-0 -translate-y-2/3 translate-x-1/4 opacity-[0.03] select-none pointer-events-none hidden lg:block">
+                <span className="text-[15rem] font-serif italic">Experience</span>
             </div>
         </section>
     );
