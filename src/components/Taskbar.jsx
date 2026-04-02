@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import {
     FaUser,
     FaBriefcase,
-    FaEnvelope
+    FaEnvelope,
+    FaPaintBrush
 } from 'react-icons/fa';
 import { FiFolder } from 'react-icons/fi';
 
@@ -12,6 +13,7 @@ const Taskbar = ({ activeSection, setActiveSection }) => {
         { name: 'About', icon: FaUser, code: 'DEF' },
         { name: 'Experience', icon: FaBriefcase, code: 'EXP' },
         { name: 'Projects', icon: FiFolder, code: 'DIR' },
+        { name: 'Designs', icon: FaPaintBrush, code: 'DSN' },
         { name: 'Contact', icon: FaEnvelope, code: 'HLR' },
     ];
 

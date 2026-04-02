@@ -8,6 +8,7 @@ import BackgroundPattern from '../../components/BackgroundPattern';
 import SkillSet from '../../components/SkillSet';
 import Personal from '../../components/Personal';
 import Blogs from '../../components/Blogs';
+import FigmaDesigns from '../../components/FigmaDesigns';
 const Home = () => {
   const [activeSection, setActiveSection] = useState('About');
   const containerRef = useRef(null);
@@ -87,6 +88,10 @@ const Home = () => {
                   </span>
                 ))}
             </div>
+          </section>
+          
+          <section id="designs" className="py-24">
+            <FigmaDesigns />
           </section>
 
           <section id="blogs" className="py-24">
