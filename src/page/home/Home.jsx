@@ -9,6 +9,7 @@ import SkillSet from '../../components/SkillSet';
 import Personal from '../../components/Personal';
 import Blogs from '../../components/Blogs';
 import FigmaDesigns from '../../components/FigmaDesigns';
+import WorkProcess from '../../components/WorkProcess';
 const Home = () => {
   const [activeSection, setActiveSection] = useState('About');
   const containerRef = useRef(null);
@@ -69,6 +70,10 @@ const Home = () => {
 
           <section id="experience" className="py-16">
             <Experience />
+          </section>
+
+          <section id="process" className="py-16">
+            <WorkProcess />
           </section>
 
           <section id="projects" className="py-16">
