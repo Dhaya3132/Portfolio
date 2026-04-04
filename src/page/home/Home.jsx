@@ -62,32 +62,32 @@ const Home = () => {
 
 
 
-        <div className="container mx-auto max-w-5xl px-4 py-5">
+        <div className="container px-4 py-5">
 
-          <section id="personal">
+          <section id="personal mx-auto max-w-5xl">
             <Personal />
           </section>
 
-          <section id="experience" className="py-16">
+          <section id="experience" className="py-16 mx-auto max-w-5xl">
             <Experience />
           </section>
 
-          <section id="process" className="py-16">
+          <section id="process" className="py-16 mx-auto max-w-5xl">
             <WorkProcess />
           </section>
 
-          <section id="projects" className="py-16">
+          <section id="projects" className="py-16 mx-auto max-w-5xl">
             <Projects />
           </section>
 
-          <section>
-            <div className="flex flex-wrap justify-start md:justify-center text-6xl md:text-9xl py-5 md:py-20 text-gray-100 text-start md:text-center font-serif leading-tight">
+          <section className="bg-[#f3f2eb] rounded-4xl p-20 my-16">
+            <div className="flex flex-wrap justify-center text-6xl md:text-9xl py-5 md:py-20 text-gray-100 text-center font-serif leading-tight">
               {"The real skill in coding is figuring things out when nothing makes sense."
                 .split(" ")
                 .map((word, index) => (
                   <span
                     key={index}
-                    className="mx-2 cursor-default transform transition-all duration-300 ease-in-out hover:text-[var(--color-accent)] hover:italic hover:scale-95"
+                    className="mx-2 cursor-default transform transition-all duration-300 ease-in-out text-[var(--color-accent)] hover:italic hover:scale-95"
                   >
                     {word}
                   </span>
@@ -95,15 +95,15 @@ const Home = () => {
             </div>
           </section>
 
-          <section id="designs" className="py-16">
+          <section id="designs" className="py-16 mx-auto max-w-5xl">
             <FigmaDesigns />
           </section>
 
-          <section id="blogs" className="py-16">
+          <section id="blogs" className="py-16 mx-auto max-w-5xl">
             <Blogs />
           </section>
 
-          <section id="contact" className="py-16">
+          <section id="contact" className="py-16 mx-auto max-w-5xl">
             <Contact />
           </section>
 

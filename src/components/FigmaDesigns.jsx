@@ -57,7 +57,7 @@ const DesignCard = ({ design, index, total, scrollProgress }) => {
     <div className="sticky top-24 w-full flex items-center justify-center mb-20">
       <motion.div
         style={{ scale, opacity, backgroundColor: design.color }}
-        className="relative w-full max-w-4xl h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-[var(--color-divider)] flex flex-col md:flex-row glassMorp"
+        className="relative w-full max-w-6xl h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-[var(--color-divider)] flex flex-col md:flex-row glassMorp"
       >
 
 

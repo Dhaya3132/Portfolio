@@ -17,7 +17,7 @@ const Personal = () => {
 
 
 
-            <div className="flex flex-wrap justify-start md:justify-center text-5xl md:text-8xl py-5 md:py-20 text-gray-100 text-start md:text-center font-serif leading-tight">
+            <div className="p-10 flex flex-wrap justify-start md:justify-center text-5xl md:text-8xl py-5 md:py-20 text-gray-100 text-start md:text-center font-serif leading-tight">
                 {"Frontend Developer with 2 years of hands-on experience building scalable, high-performance web applications for retail and POS systems."
                     .split(" ")
                     .map((word, index) => (
