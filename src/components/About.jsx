@@ -37,7 +37,7 @@ const About = () => {
   return (
     <div className="w-full min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-evenly" >
       {/* Left Side: Dark Content */}
-      <div className="w-full lg:w-1/2 bg-[var(--color-primary)] text-white flex flex-col justify-center px-8 lg:px-20 py-20 relative">
+      <div className="w-full lg:w-1/2  bg-[var(--color-primary)] text-white flex flex-col justify-center px-8 lg:px-20 py-20 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,10 +73,10 @@ const About = () => {
       </div>
 
       {/* Right Side: Light / Beige Image Area */}
-      <div className="lg:w-1/2 flex items-center justify-center relative p-8">
+      <div className="flex items-center justify-center relative p-8">
 
         <div
-          className="mx-auto relative w-full max-w-md cursor-pointer overflow-visible"
+          className="relative w-full max-w-md cursor-pointer overflow-visible"
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
