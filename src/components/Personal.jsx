@@ -1,36 +1,72 @@
-import React from 'react'
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Personal = () => {
-    return (
-        <section className='w-full mb-10'>
-            {/* <div className="relative inline-block mb-10"><motion.h2
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl font-serif font-semibold tracking-tight text-white"
-            >
-                About <span className="text-[var(--color-accent)] italic">Me</span>
-            </motion.h2>
-                </div> */}
+  return (
+    <section className="relative isolate min-h-[760px] w-full max-w-7xl p-6 md:p-10 mx-auto text-center flex flex-col justify-center items-center overflow-hidden">
+      <motion.img
+        src="/assests/about/helmet.png"
+        alt=""
+        aria-hidden="true"
+        className="personal-object personal-dice"
+        animate={{ y: [0, -14, 0], rotate: [-8, -2, -8] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src="/assests/about/f760b0ae9126a22ab6faba2c2f928204.png"
+        alt=""
+        aria-hidden="true"
+        className="personal-object personal-character"
+        animate={{ y: [0, 12, 0], rotate: [5, 1, 5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src="/assests/about/f890e016b764c7712eb7a44a46043dc4.png"
+        alt=""
+        aria-hidden="true"
+        className="personal-object personal-artwork"
+        animate={{ y: [0, -10, 0], rotate: [7, 11, 7] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src="/assests/about/%E2%80%94Pngtree%E2%80%94modern%20blue%20steering%20wheel%20in_20957305.png"
+        alt=""
+        aria-hidden="true"
+        className="personal-object personal-wheel"
+        animate={{ y: [0, 10, 0], rotate: [-12, -5, -12] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+      />
 
+      <div className="relative z-10 max-w-4xl">
+        <h5 className="text-5xl md:text-8xl text-black mb-2">Hello.</h5>
 
+        <h2 className="font-display text-3xl md:text-7xl text-orange-500 mb-2">
+          I Make designs people remember
+        </h2>
 
-            <div className="p-10 flex flex-wrap justify-start md:justify-center text-5xl md:text-8xl py-5 md:py-20 text-gray-100 text-start md:text-center font-serif leading-tight">
-                {"Frontend Developer with 2 years of hands-on experience building scalable, high-performance web applications for retail and POS systems."
-                    .split(" ")
-                    .map((word, index) => (
-                        <span
-                            key={index}
-                            className="mx-2 cursor-default transform transition-all duration-300 ease-in-out hover:text-[var(--color-accent)] hover:italic hover:scale-95"
-                        >
-                            {word}
-                        </span>
-                    ))}
-            </div>
-        </section>
-    )
-}
+        <div className="max-w-5xl text-center text-3xl md:text-6xl text-black">
+          <p className="font-medium">
+            I develope clean websites, apps, and systems that help ideas look
+            sharper, feel trusted and work with purpose
+          </p>
+        </div>
 
-export default Personal
+        <div className="personal-cta">
+          <button className="bg-indigo-500 text-white font-medium rounded-xl px-5 py-3 shadow -rotate-9">
+            Start project
+          </button>
+          <motion.img
+            src="/assests/about/ping.png"
+            alt=""
+            aria-hidden="true"
+            className="personal-ping"
+            animate={{ scale: [1, 1.08, 1], rotate: [8, 13, 8] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Personal;

@@ -6,7 +6,7 @@ import CustomCursor from './components/Cursor'
 const App = () => {
   return (
     <ThemeProvider>
-      <div className="bg-[var(--bg-color)] min-h-screen text-[var(--color-text-light)] selection:bg-[var(--color-accent)] selection:text-white">
+      <div className="min-h-screen w-full text-[var(--color-text-light)]  selection:text-white">
         <CustomCursor />
         <Home />
       </div>

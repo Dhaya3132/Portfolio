@@ -23,7 +23,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8"
+                    className="fixed inset-0 z-[99999] flex items-center justify-center bg-white backdrop-blur-sm p-4 md:p-8"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -38,7 +38,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header */}
-                        <div className="flex md:flex-row flex-col md:items-center md:justify-between p-4 border-b border-white/10 bg-[#222]">
+                        <div className="flex md:flex-row flex-col md:items-center md:justify-between p-4 border-b border-white/10 bg-[#111]">
                             <h2 className="text-xl font-semibold text-white tracking-wide font-serif italic">You can View or Download My Resume</h2>
 
                             <div className="flex items-center gap-4">
