@@ -6,7 +6,15 @@ import ResumeModal from "./ResumeModal";
 const About = () => {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   return (
-    <div className="relative min-h-screen w-full flex items-start justify-start overflow-hidden text-black">
+    <div
+      className="relative min-h-screen w-full flex items-start justify-start overflow-hidden text-black"
+      style={{
+        backgroundImage: "url('/assests/about/hero1.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* <video
         className="absolute inset-0 w-full h-full object-cover"
         src="/assests/video/heroSectionBackground.mp4"
@@ -25,8 +33,8 @@ const About = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 text-start px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-10 w-full min-h-screen flex flex-col justify-between gap-12"
       >
-        <div className="text-end">
-          <h3 className="font-display text-xl">Dhayalan</h3>
+        <div className="text-end d-flex justify-end items-end">
+          <h3 className="font-display text-xl p-2 bg-white/20 rounded-full w-fit px-5 text-end border border-2 border-white/40">Dhayalan</h3>
         </div>
 
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-evenly lg:items-center">
@@ -36,14 +44,15 @@ const About = () => {
             </h1>
 
             <div className="max-w-xl rounded-[26px] mt-8 md:mt-10">
-              <p className="text-base md:text-xl text-black/85 font-light leading-relaxed">
+              <p className="text-base md:text-xl text-white/85 font-light leading-relaxed">
                 I design and engineer high-performance web systems that connect
                 product strategy, backend reliability, and polished user
                 experiences into one clear result.
               </p>
             </div>
           </div>
-          <div className="relative self-center w-45 h-52 shrink-0 bg-gray-50 align-center p-3 rounded border border-gray-100 rotate-12 shadow">
+          <div className="relative self-center w-45 h-57 shrink-0 bg-gray-50 align-center p-3 rounded border border-gray-100 rotate-12 shadow">
+
             <div className="flex flex-col justify-center items-center">
               <div className="bg-white">
                 <img
@@ -56,14 +65,18 @@ const About = () => {
                 <p>Software Engineer</p>
                 <p>2026</p>
               </div>
+              <div className="text-sm font-mono bg-green-500 text-white">
+                  Available for work
+              </div>
             </div>
             <img
               src="/assests/about/ping.png"
               alt=""
               aria-hidden="true"
-              className="absolute -bottom-6 -right-5 w-12 h-12 object-contain"
+              className="absolute bottom-50 right-35 w-12 h-12 object-contain"
             />
           </div>
+
         </div>
 
         <div className="flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-center w-full">

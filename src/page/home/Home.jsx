@@ -188,11 +188,13 @@ const Home = () => {
               onClick={() => setIsHovered((prev) => !prev)}
               animate={{
                 scale: isHovered ? 1.04 : 1,
+                 y: [0, -14, 0], rotate: [-8, -2, -8]
               }}
               transition={{
                 type: "spring",
                 stiffness: 250,
                 damping: 18,
+                duration: 5, repeat: Infinity, ease: "easeInOut" 
               }}
             />
 

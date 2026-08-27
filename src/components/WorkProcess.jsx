@@ -167,9 +167,10 @@ const WorkProcess = () => {
               From design to deployment, the structure, code quality, and
               discipline behind every build.
             </motion.p>
-            <p className="text-9xl -rotate-9">
+            <motion.p className="text-9xl -rotate-9" animate={{ y: [0, -14, 0], rotate: [-8, -2, -8] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
               👀
-            </p>
+            </motion.p>
           </div>
 
 
