@@ -9,6 +9,7 @@ import {
   FiImage,
   FiMail,
 } from "react-icons/fi";
+import ImageWithSkeleton from "./ui/ImageWithSkeleton";
 
 /* =========================================================
    COMBINED WORKS
@@ -302,18 +303,12 @@ const WorkCard = ({ work, index, constraintsRef }) => {
         {/* IMAGE */}
 
         <div className="relative aspect-[4/3] overflow-hidden">
-          <img
+          <ImageWithSkeleton
             src={work.image}
             alt={work.title}
             draggable="false"
-            className="
-              h-full
-              w-full
-              object-cover
-              transition-transform
-              duration-700
-              hover:scale-105
-            "
+            className="h-full w-full"
+            imgClassName="object-cover transition-transform duration-700 hover:scale-105"
           />
 
           {/* Gradient */}

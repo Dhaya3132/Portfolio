@@ -6,6 +6,7 @@ import Blogs from "../../components/Blogs";
 import WorkProcess from "../../components/WorkProcess";
 import { motion } from "framer-motion";
 import CreativeWorks from "../../components/CreativeWorks";
+import ImageWithSkeleton from "../../components/ui/ImageWithSkeleton";
 
 import { techStack } from "../../utils/json/data";
 const Home = () => {
@@ -179,10 +180,11 @@ const Home = () => {
             </p>
              
             {/* MacBook */}
-            <motion.img
+            <ImageWithSkeleton
               src="/assests/about/Macbook-Pro-PNG-File.png"
               alt="MacBook"
-              className="relative z-30 h-56 w-56 object-contain cursor-pointer"
+              className="relative z-30 h-56 w-56 cursor-pointer"
+              imgClassName="object-contain"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={() => setIsHovered((prev) => !prev)}
@@ -194,7 +196,7 @@ const Home = () => {
                 type: "spring",
                 stiffness: 250,
                 damping: 18,
-                duration: 5, repeat: Infinity, ease: "easeInOut" 
+                duration: 5, repeat: Infinity, ease: "easeInOut"
               }}
             />
 
@@ -269,10 +271,11 @@ const Home = () => {
                       delay: isHovered ? index * 0.025 : 0,
                     }}
                   >
-                    <motion.img
+                    <ImageWithSkeleton
                       src={tech.icon}
                       alt={tech.label}
-                      className="h-9 w-9 object-contain"
+                      className="h-9 w-9"
+                      imgClassName="object-contain"
                       animate={
                         isHovered
                           ? {

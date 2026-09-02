@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import ResumeModal from "./ResumeModal";
+import ImageWithSkeleton from "./ui/ImageWithSkeleton";
 
 const About = () => {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
@@ -50,15 +51,18 @@ const About = () => {
                 experiences into one clear result.
               </p>
             </div>
+
           </div>
           <div className="relative self-center w-45 h-57 shrink-0 bg-gray-50 align-center p-3 rounded border border-gray-100 rotate-12 shadow">
 
             <div className="flex flex-col justify-center items-center">
               <div className="bg-white">
-                <img
+                <ImageWithSkeleton
                   src="/assests/about/Profile_Image.png"
                   alt=""
-                  className="h-34 w-36 rounded"
+                  className="h-34 w-36 rounded overflow-hidden"
+                  imgClassName="rounded"
+                  skeletonClassName="rounded"
                 />
               </div>
               <div className="mt-2 flex flex-col text-center font-display">
@@ -69,11 +73,12 @@ const About = () => {
                   Available for work
               </div>
             </div>
-            <img
+            <ImageWithSkeleton
               src="/assests/about/ping.png"
               alt=""
               aria-hidden="true"
-              className="absolute bottom-50 right-35 w-12 h-12 object-contain"
+              className="absolute bottom-50 right-35 w-12 h-12"
+              imgClassName="object-contain"
             />
           </div>
 

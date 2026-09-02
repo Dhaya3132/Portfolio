@@ -1,38 +1,42 @@
 import React from "react";
-import { motion } from "framer-motion";
+import ImageWithSkeleton from "./ui/ImageWithSkeleton";
 
 const Personal = () => {
   return (
     <section className="relative isolate min-h-[760px] w-full max-w-7xl p-6 md:p-10 mx-auto text-center flex flex-col justify-center items-center overflow-hidden">
-      <motion.img
+      <ImageWithSkeleton
         src="/assests/about/helmet.png"
         alt=""
         aria-hidden="true"
         className="personal-object personal-dice"
+        imgClassName="object-contain"
         animate={{ y: [0, -14, 0], rotate: [-8, -2, -8] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.img
+      <ImageWithSkeleton
         src="/assests/about/f760b0ae9126a22ab6faba2c2f928204.png"
         alt=""
         aria-hidden="true"
         className="personal-object personal-character"
+        imgClassName="object-contain"
         animate={{ y: [0, 12, 0], rotate: [5, 1, 5] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.img
+      <ImageWithSkeleton
         src="/assests/about/f890e016b764c7712eb7a44a46043dc4.png"
         alt=""
         aria-hidden="true"
         className="personal-object personal-artwork"
+        imgClassName="object-contain"
         animate={{ y: [0, -10, 0], rotate: [7, 11, 7] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.img
+      <ImageWithSkeleton
         src="/assests/about/%E2%80%94Pngtree%E2%80%94modern%20blue%20steering%20wheel%20in_20957305.png"
         alt=""
         aria-hidden="true"
         className="personal-object personal-wheel"
+        imgClassName="object-contain"
         animate={{ y: [0, 10, 0], rotate: [-12, -5, -12] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -55,7 +59,7 @@ const Personal = () => {
           <button className="bg-indigo-500 text-white font-medium rounded-xl px-5 py-3 shadow -rotate-9">
             Start project
           </button>
-          <motion.img
+          <ImageWithSkeleton
             src="/assests/about/ping.png"
             alt=""
             aria-hidden="true"
