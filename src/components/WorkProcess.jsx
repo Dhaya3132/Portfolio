@@ -174,152 +174,159 @@ const WorkProcess = () => {
           </div>
 
 
-          <div className="w-full bg-white border border-gray-100 p-5 rounded-2xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activePhase ? activePhase.id : "idle"}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="w-full rounded-3xl p-2 sm:p-4"
-              >
-                {activePhase ? (
-                  <>
-                    <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                      <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-gray-500">
-                          Active workflow
-                        </p>
-                        <h3 className="mt-1 text-2xl font-semibold tracking-tight text-gray-900">
-                          {activePhase.title}
-                        </h3>
-                        <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-600">
-                          {activePhase.description}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-gray-900 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-white">
-                          0{activeIndex + 1}
-                        </span>
-                        <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-[11px] font-medium text-gray-600">
-                          Selected result
-                        </span>
-                      </div>
-                    </div>
+          <div className="relative w-full">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 translate-x-[10px] translate-y-[10px] rounded-2xl bg-[linear-gradient(115deg,#ff2d95_0%,#fb4d7c_45%,#ff8a3d_100%)]"
+            />
 
-                    <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
-                      <div className="rounded-[1.5rem] border border-gray-200/80 bg-gradient-to-br from-white to-gray-50 p-3 sm:p-4">
-                        <div className="h-[250px] sm:h-[300px]">
-                          {Visual && (
-                            <Visual
-                              items={activePhase.children}
-                              rootIcon={activePhase.icon}
-                            />
-                          )}
+            <div className="relative w-full bg-white border-2 border-black p-5 rounded-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activePhase ? activePhase.id : "idle"}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="w-full rounded-3xl p-2 sm:p-4"
+                >
+                  {activePhase ? (
+                    <>
+                      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                          <p className="text-[20px] font-light text-gray-500">
+                            Active workflow
+                          </p>
+                          <h3 className="mt-1 text-2xl font-semibold tracking-tight text-gray-900 font-Display">
+                            {activePhase.title}
+                          </h3>
+                          <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-600">
+                            {activePhase.description}
+                          </p>
                         </div>
-                      </div>
-
-                      <div className="max-h-[300px] overflow-y-auto pr-1">
-                        <div className="space-y-3">
-                          {activePhase.children.map((child, index) => {
-                            const ChildIcon = child.icon;
-                            return (
-                              <motion.div
-                                key={child.id}
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{
-                                  delay: index * 0.05,
-                                  duration: 0.25,
-                                }}
-                                className="rounded-2xl border border-gray-200/80 bg-white/80 p-3"
-                              >
-                                <div className="flex items-start gap-3">
-                                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-700">
-                                    <ChildIcon className="text-sm" />
-                                  </span>
-                                  <div>
-                                    <h4 className="text-sm font-semibold text-gray-900">
-                                      {child.label}
-                                    </h4>
-                                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                                      {child.description}
-                                    </p>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="h-[30rem] flex flex-col items-center justify-center gap-4 rounded-[1.5rem] px-4 py-10 text-start sm:px-8">
-                    <div>
-                      <BrickAnimation />
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="w-full bg-gray-50 p-5 rounded-3xl border border-gray-100">
-              <div className="w-full">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
-                  {phases.map((phase, index) => {
-                    const isActive = activePhase?.id === phase.id;
-                    const PhaseIcon = phase.icon;
-
-                    return (
-                      <motion.button
-                        key={phase.id}
-                        whileHover={{ y: -1, scale: 1 }}
-                        whileTap={{ scale: 0.99 }}
-                        onClick={() => setActivePhaseId(phase.id)}
-                        className={`w-full rounded-2xl p-4 text-left transition-all duration-300 ${
-                          isActive
-                            ? "bg-green-200 text-black"
-                            : "bg-white text-gray-900 hover:bg-gray-50"
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <span
-                            className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                              isActive
-                                ? "bg-white text-black "
-                                : "bg-gray-200 text-gray-700"
-                            }`}
-                          >
-                            <PhaseIcon className="text-sm" />
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-full bg-gray-900 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-white">
+                            0{activeIndex + 1}
                           </span>
-                          <div className="min-w-0">
-                            <div className="flex items-center justify-between gap-2">
-                              <p
-                                className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${isActive ? "text-black" : "text-gray-400"}`}
-                              >
-                                0{index + 1}
-                              </p>
-                              <span className="text-[10px] text-gray-400">
-                                {phase.children.length} steps
-                              </span>
-                            </div>
-                            <h3
-                              className={`mt-1 text-base font-semibold ${isActive ? "text-black" : "text-gray-900"}`}
-                            >
-                              {phase.title}
-                            </h3>
-                            <p
-                              className={`mt-1 line-clamp-2 text-sm leading-relaxed ${isActive ? "text-black" : "text-gray-600"}`}
-                            >
-                              {phase.description}
-                            </p>
+                          <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-[11px] font-medium text-gray-600">
+                            Selected result
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+                        <div className="rounded-[1.5rem] border border-gray-200/80 bg-gradient-to-br from-white to-gray-50 p-3 sm:p-4">
+                          <div className="h-[250px] sm:h-[300px]">
+                            {Visual && (
+                              <Visual
+                                items={activePhase.children}
+                                rootIcon={activePhase.icon}
+                              />
+                            )}
                           </div>
                         </div>
-                      </motion.button>
-                    );
-                  })}
+
+                        <div className="max-h-[300px] overflow-y-auto pr-1">
+                          <div className="space-y-3">
+                            {activePhase.children.map((child, index) => {
+                              const ChildIcon = child.icon;
+                              return (
+                                <motion.div
+                                  key={child.id}
+                                  initial={{ opacity: 0, x: 10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    delay: index * 0.05,
+                                    duration: 0.25,
+                                  }}
+                                  className="rounded-2xl border border-gray-200/80 bg-white/80 p-3"
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-700">
+                                      <ChildIcon className="text-sm" />
+                                    </span>
+                                    <div>
+                                      <h4 className="text-sm font-semibold text-gray-900">
+                                        {child.label}
+                                      </h4>
+                                      <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                                        {child.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="h-[30rem] flex flex-col items-center justify-center gap-4 rounded-[1.5rem] px-4 py-10 text-start sm:px-8">
+                      <div>
+                        <BrickAnimation />
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="w-full bg-gray-50 p-5 rounded-xl">
+                <div className="w-full">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
+                    {phases.map((phase, index) => {
+                      const isActive = activePhase?.id === phase.id;
+                      const PhaseIcon = phase.icon;
+
+                      return (
+                        <motion.button
+                          key={phase.id}
+                          whileHover={{ y: -1, scale: 1 }}
+                          whileTap={{ scale: 0.99 }}
+                          onClick={() => setActivePhaseId(phase.id)}
+                          className={`w-full rounded-2xl p-4 text-left transition-all duration-300 ${
+                            isActive
+                              ? "bg-pink-600 text-white"
+                              : "bg-white text-gray-900 hover:bg-gray-50" 
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span
+                              className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+                                isActive
+                                  ? "bg-white text-black "
+                                  : "bg-gray-200 text-gray-700"
+                              }`}
+                            >
+                              <PhaseIcon className="text-sm" />
+                            </span>
+                            <div className="min-w-0">
+                              <div className="flex items-center justify-between gap-2">
+                                <p
+                                  className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${isActive ? "text-white" : "text-gray-400"}`}
+                                >
+                                  0{index + 1}
+                                </p>
+                                <span className="text-[10px] text-gray-400">
+                                  {phase.children.length} steps
+                                </span>
+                              </div>
+                              <h3
+                                className={`mt-1 text-base font-semibold ${isActive ? "text-white" : "text-gray-900"}`}
+                              >
+                                {phase.title}
+                              </h3>
+                              <p
+                                className={`mt-1 line-clamp-2 text-sm leading-relaxed ${isActive ? "text-white" : "text-gray-600"}`}
+                              >
+                                {phase.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
