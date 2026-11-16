@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useScrollProgress } from "../../hooks/useScrollProgress";
 
 const Word = ({ children, progress, range, highlight }) => {
   const opacity = useTransform(progress, range, [0.14, 1]);
@@ -21,10 +22,7 @@ const Word = ({ children, progress, range, highlight }) => {
  */
 const ScrollWords = ({ text, className = "", highlight = [] }) => {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.85", "end 0.45"],
-  });
+  const scrollYProgress = useScrollProgress(ref, ["start 0.85", "end 0.45"]);
   const words = text.split(" ");
 
   return (

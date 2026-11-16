@@ -3,12 +3,12 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
-  useScroll,
   useSpring,
   useTransform,
   useVelocity,
 } from "framer-motion";
 import { wrap } from "../../utils/motion";
+import { scrollY } from "../../utils/scrollEngine";
 
 const COPIES = 4;
 
@@ -18,7 +18,6 @@ const COPIES = 4;
  */
 const VelocityMarquee = ({ children, baseVelocity = 3, className = "" }) => {
   const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 4], { clamp: false });

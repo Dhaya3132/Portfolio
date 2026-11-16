@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { FiArrowRight, FiArrowDown } from "react-icons/fi";
 import ResumeModal from "./ResumeModal";
 import ImageWithSkeleton from "./ui/ImageWithSkeleton";
@@ -8,6 +8,7 @@ import Magnetic from "./ui/Magnetic";
 import { useIntro } from "../context/introContext";
 import { useScrollTo } from "../hooks/useScrollTo";
 import { useTilt } from "../hooks/useTilt";
+import { useScrollProgress } from "../hooks/useScrollProgress";
 import { EASE_FLUID } from "../utils/motion";
 
 const About = () => {
@@ -19,10 +20,7 @@ const About = () => {
 
   // Scroll-linked exit: the hero recedes into a rounded card while the
   // background drifts slower than the page (parallax).
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
+  const scrollYProgress = useScrollProgress(sectionRef, ["start start", "end start"]);
   const frameScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
   const frameRadius = useTransform(scrollYProgress, [0, 1], [0, 48]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);

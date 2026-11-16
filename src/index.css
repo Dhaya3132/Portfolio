@@ -3,7 +3,7 @@
 @theme {
   --font-sans: "Poppins", "Segoe UI", sans-serif;
   --font-serif: "Poppins", "Segoe UI", sans-serif;
-  --font-display: "Engagement";
+  --font-display: "Engagement", cursive;
   --color-primary: rgb(12, 12, 12);
   --color-accent: #C79855;
   --color-accent-hover: #b48545;
@@ -50,6 +50,15 @@ body {
   color: #fff;
 }
 
+/* Same grid paper as <html>, for full-screen layers (the intro) that have to
+   cover the page but should still feel like part of it. */
+.paper-grid {
+  background-color: #fff;
+  background-image: linear-gradient(rgba(55, 108, 140, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 108, 140, 0.14) 1px, transparent 1px);
+  background-size: 8.75rem 8.75rem;
+}
+
 html.is-loading,
 html.is-loading body {
   overflow: hidden;
@@ -76,7 +85,12 @@ html.is-loading body {
   margin: -0.12em -0.1em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  animation: apple-flow 9s linear infinite;
+  /* Text-clipped gradients cannot be composited, so every frame is a repaint.
+     steps() caps that at 20 repaints/s (the drift is far too slow to show it)
+     and the animation only runs while the element is on screen (see
+     useFlowingGradients, which sets data-flow="on"). */
+  animation: apple-flow 9s steps(180) infinite;
+  animation-play-state: paused;
 }
 
 /* Deep variant: stays readable on bright photos (turquoise hero sky) */
@@ -108,7 +122,13 @@ html.is-loading body {
 .apple-gradient-bg {
   background-image: linear-gradient(100deg, #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
   background-size: 200% 100%;
-  animation: apple-flow 9s linear infinite;
+  animation: apple-flow 9s steps(180) infinite;
+  animation-play-state: paused;
+}
+
+.apple-gradient[data-flow="on"],
+.apple-gradient-bg[data-flow="on"] {
+  animation-play-state: running;
 }
 
 /* Outline text used in the velocity marquee */
@@ -117,44 +137,62 @@ html.is-loading body {
   color: transparent;
 }
 
-/* Animated conic "glow ring". Put it on a WRAPPER; the filled element
-   (button / card) goes inside so it paints above the ring and glow. */
-@property --ring-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
+/* Animated conic "glow ring". Put it on a WRAPPER and add the two layer
+   spans as its first children:
 
+     <span class="glow-ring">
+       <i class="glow-ring__glow" aria-hidden="true"></i>
+       <i class="glow-ring__ring" aria-hidden="true"></i>
+       <button>…</button>      <- paints above the ring and glow
+     </span>
+
+   The old version animated an @property angle, which forced a full repaint
+   (plus a 22px blur) every frame. Here the gradient is painted once and only
+   rotated with `transform`, which the compositor does without the main thread. */
 .glow-ring {
   position: relative;
   isolation: isolate;
 }
 
-.glow-ring::before {
-  content: "";
+.glow-ring__ring,
+.glow-ring__glow {
   position: absolute;
-  inset: -2px;
-  z-index: -1;
   border-radius: inherit;
-  background: conic-gradient(from var(--ring-angle), #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
-  animation: ring-spin 5s linear infinite;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.glow-ring::after {
-  content: "";
-  position: absolute;
+.glow-ring__ring {
+  inset: -2px;
+  z-index: -1;
+}
+
+.glow-ring__glow {
   inset: 6px;
   z-index: -2;
-  border-radius: inherit;
-  background: conic-gradient(from var(--ring-angle), #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
   filter: blur(22px);
   opacity: 0.55;
+}
+
+/* A square larger than the diagonal of any button, so it always covers the
+   clip box while it spins. */
+.glow-ring__ring::before,
+.glow-ring__glow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ring-size, 420px);
+  height: var(--ring-size, 420px);
+  background: conic-gradient(#0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
+  transform: translate(-50%, -50%) rotate(0deg);
+  will-change: transform;
   animation: ring-spin 5s linear infinite;
 }
 
 @keyframes ring-spin {
   to {
-    --ring-angle: 360deg;
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -183,8 +221,8 @@ html.is-loading body {
 @media (prefers-reduced-motion: reduce) {
   .apple-gradient,
   .apple-gradient-bg,
-  .glow-ring::before,
-  .glow-ring::after,
+  .glow-ring__ring::before,
+  .glow-ring__glow::before,
   .aurora-blob {
     animation: none !important;
   }

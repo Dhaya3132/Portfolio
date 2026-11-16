@@ -1,12 +1,14 @@
-import { useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue } from "framer-motion";
+import { useDamped } from "./useDamped";
 
 // 3D tilt that follows the mouse. Spread the returned props on a motion element.
+// Rotation is damped (frame-rate independent, no wobble) so the card settles
+// smoothly onto the pointer instead of springing past it.
 export const useTilt = ({ max = 10, perspective = 900 } = {}) => {
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const spring = { stiffness: 180, damping: 18, mass: 0.6 };
-  const smoothX = useSpring(rotateX, spring);
-  const smoothY = useSpring(rotateY, spring);
+  const smoothX = useDamped(rotateX, { lambda: 9, precision: 0.02 });
+  const smoothY = useDamped(rotateY, { lambda: 9, precision: 0.02 });
 
   const onPointerMove = (event) => {
     if (event.pointerType !== "mouse") return;

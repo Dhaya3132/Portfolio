@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useScrollProgress } from "../hooks/useScrollProgress";
 import { FiArrowUpRight, FiMove } from "react-icons/fi";
 import ImageWithSkeleton from "./ui/ImageWithSkeleton";
 import SplitText from "./ui/SplitText";
@@ -263,7 +264,7 @@ const WorkCard = ({ work, index, constraintsRef }) => {
         y: 140,
         scale: 0.85,
         rotate: cardLayout[index].rotate * 3,
-        filter: "blur(10px)",
+        filter: "blur(6px)",
       }}
       whileInView={{
         opacity: 1,
@@ -425,10 +426,7 @@ const CreativeWorks = () => {
   const sectionRef = useRef(null);
 
   // The painting drifts slower than the page for a sense of depth.
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  const scrollYProgress = useScrollProgress(sectionRef, ["start end", "end start"]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (

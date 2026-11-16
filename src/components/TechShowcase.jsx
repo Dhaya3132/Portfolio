@@ -79,7 +79,11 @@ const TechShowcase = () => {
       <div className="relative z-30 mt-4">
         <motion.div
           aria-hidden="true"
+          // A 64px blur over a gradient that repaints every frame is one of the
+          // most expensive things a page can do, so this glow stays static
+          // (it still breathes through the opacity/scale animation below).
           className="apple-gradient-bg absolute inset-6 -z-10 rounded-full blur-3xl"
+          style={{ animation: "none" }}
           animate={{ opacity: isHovered ? 0.75 : 0.35, scale: isHovered ? 1.3 : 1 }}
           transition={{ duration: 0.8, ease: EASE_FLUID }}
         />

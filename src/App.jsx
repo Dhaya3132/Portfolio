@@ -10,6 +10,7 @@ import ScrollProgress from './components/ui/ScrollProgress'
 import AmbientBackground from './components/ui/AmbientBackground'
 import Navbar from './components/Navbar'
 import Preloader from './components/Preloader'
+import { useFlowingGradients } from './hooks/useFlowingGradients'
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -26,6 +27,9 @@ const App = () => {
     }
     window.scrollTo(0, 0)
   }, [])
+
+  // Flowing gradients only animate while they are on screen.
+  useFlowingGradients()
 
   const handleIntroFinish = useCallback(() => setReady(true), [])
 

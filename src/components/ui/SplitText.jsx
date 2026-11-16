@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { EASE_FLUID } from "../../utils/motion";
 
 const wordVariants = {
-  hidden: { opacity: 0, y: "0.55em", rotate: 2, filter: "blur(12px)" },
+  hidden: { opacity: 0, y: "0.55em", rotate: 2, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: "0em",

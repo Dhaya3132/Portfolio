@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useTransform } from "framer-motion";
+import { useScrollProgress } from "../hooks/useScrollProgress";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FiArrowUp, FiCopy, FiCheck } from "react-icons/fi";
 import SplitText from "./ui/SplitText";
@@ -29,10 +30,7 @@ const Contact = () => {
   const scrollTo = useScrollTo();
   const [copied, setCopied] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end end"],
-  });
+  const scrollYProgress = useScrollProgress(sectionRef, ["start end", "end end"]);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "0%"]);
 
@@ -92,6 +90,8 @@ const Contact = () => {
           <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Magnetic>
               <span className="glow-ring inline-flex rounded-2xl">
+                <span className="glow-ring__glow" aria-hidden="true" />
+                <span className="glow-ring__ring" aria-hidden="true" />
                 <a
                   href={`mailto:${EMAIL}`}
                   className="group flex w-fit items-center gap-2 rounded-2xl bg-black px-6 py-3.5 text-white"

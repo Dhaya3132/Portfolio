@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent } from "framer-motion";
 import { FiArrowUpRight, FiMenu, FiX } from "react-icons/fi";
 import { useIntro } from "../context/introContext";
 import { useScrollTo } from "../hooks/useScrollTo";
 import { EASE_FLUID, SPRING_SNAPPY } from "../utils/motion";
+import { scrollY } from "../utils/scrollEngine";
 
 const LINKS = [
   { id: "about", label: "Home" },
@@ -19,7 +20,6 @@ const SECTION_IDS = [...LINKS.map((link) => link.id), "contact"];
 const Navbar = () => {
   const { ready } = useIntro();
   const scrollTo = useScrollTo();
-  const { scrollY } = useScroll();
   const [active, setActive] = useState("about");
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -65,7 +65,7 @@ const Navbar = () => {
     >
       <nav
         aria-label="Primary"
-        className={`relative flex w-full max-w-4xl items-center justify-between gap-2 rounded-full border border-white/50 py-1.5 pl-2 pr-1.5 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow] duration-500 ${
+        className={`relative flex w-full max-w-4xl items-center justify-between gap-2 rounded-full border border-white/50 py-1.5 pl-2 pr-1.5 backdrop-blur-lg transition-[background-color,box-shadow] duration-500 ${
           scrolled
             ? "bg-white/70 shadow-[0_10px_40px_-10px_rgba(15,23,42,0.25)]"
             : "bg-white/35 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.15)]"
@@ -105,6 +105,8 @@ const Navbar = () => {
 
         <div className="flex items-center gap-1">
           <span className="glow-ring hidden rounded-full sm:inline-flex">
+            <span className="glow-ring__glow" aria-hidden="true" />
+            <span className="glow-ring__ring" aria-hidden="true" />
             <button
               type="button"
               onClick={() => go("contact")}

@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import ImageWithSkeleton from "./ui/ImageWithSkeleton";
 import SplitText from "./ui/SplitText";
 import ScrollWords from "./ui/ScrollWords";
 import Magnetic from "./ui/Magnetic";
 import { useScrollTo } from "../hooks/useScrollTo";
+import { useScrollProgress } from "../hooks/useScrollProgress";
+import { useDamped } from "../hooks/useDamped";
 import { EASE_FLUID } from "../utils/motion";
 
 // A layer that drifts with the mouse (depth) and with scroll (parallax).
@@ -62,13 +64,12 @@ const Personal = () => {
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const mouseX = useSpring(rawX, { stiffness: 60, damping: 18 });
-  const mouseY = useSpring(rawY, { stiffness: 60, damping: 18 });
+  // Slow, floaty follow (lambda 4) with no overshoot, so depth layers drift
+  // toward the cursor instead of wobbling around it.
+  const mouseX = useDamped(rawX, { lambda: 4, precision: 0.0005 });
+  const mouseY = useDamped(rawY, { lambda: 4, precision: 0.0005 });
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  const scrollYProgress = useScrollProgress(sectionRef, ["start end", "end start"]);
 
   const handlePointerMove = (event) => {
     if (event.pointerType !== "mouse") return;
@@ -106,7 +107,7 @@ const Personal = () => {
 
       <div className="relative z-10 max-w-4xl">
         <motion.h5
-          initial={{ opacity: 0, scale: 0.6, filter: "blur(16px)" }}
+          initial={{ opacity: 0, scale: 0.6, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 1.2, ease: EASE_FLUID }}
