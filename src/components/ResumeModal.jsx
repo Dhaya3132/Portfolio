@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLenis } from 'lenis/react';
 import { IoClose } from 'react-icons/io5';
 import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ResumeModal = ({ isOpen, onClose }) => {
+    const lenis = useLenis();
     const resumeDocId = "1CIPhgJp9YrFWHMc8OEGWdOZr4xZVy-Tk";
     const previewLink = `https://docs.google.com/document/d/${resumeDocId}/view?usp=sharing`;
     const downloadLink = `https://docs.google.com/document/d/${resumeDocId}/view?usp=sharing`;
@@ -19,6 +21,13 @@ const ResumeModal = ({ isOpen, onClose }) => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, onClose]);
 
+    // Freeze the smooth-scrolling page behind the modal.
+    useEffect(() => {
+        if (!isOpen || !lenis) return undefined;
+        lenis.stop();
+        return () => lenis.start();
+    }, [isOpen, lenis]);
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -27,14 +36,19 @@ const ResumeModal = ({ isOpen, onClose }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
                     onClick={onClose}
+                    data-lenis-prevent
                 >
                     <motion.div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Resume"
                         className="relative w-full max-w-5xl h-[90vh] bg-black/35 rounded-xl border border-white/20 shadow-2xl backdrop-blur-xl flex flex-col overflow-hidden"
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        initial={{ opacity: 0, scale: 0.9, y: 60, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, scale: 0.94, y: 30, filter: "blur(8px)" }}
+                        transition={{ type: "spring", stiffness: 220, damping: 24 }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header */}
@@ -61,6 +75,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                                 </a>
                                 <button
                                     onClick={onClose}
+                                    aria-label="Close resume"
                                     className="p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors ml-2"
                                 >
                                     <IoClose size={24} />

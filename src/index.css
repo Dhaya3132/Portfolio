@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Engagement&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -15,12 +13,20 @@
   --color-text-muted: rgba(255, 255, 255, 0.55);
   --color-divider: rgba(255, 255, 255, 0.1);
   --color-divider-dark: rgba(0, 0, 0, 0.1);
+  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
   --bg-color: var(--color-primary);
   --accent-color: var(--color-accent);
-    background-color: #fff;
+
+  /* Apple-style gradient stops (Apple Intelligence palette) */
+  --ag-1: #0a84ff;
+  --ag-2: #bf5af2;
+  --ag-3: #ff375f;
+  --ag-4: #ff9f0a;
+
+  background-color: #fff;
   background-image: linear-gradient(rgba(55, 108, 140, 0.14) 1px, transparent 1px),
     linear-gradient(90deg, rgba(55, 108, 140, 0.14) 1px, transparent 1px);
   background-size: 8.75rem 8.75rem;
@@ -30,15 +36,158 @@ body {
   color: var(--color-text-light);
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow-x: clip;
   cursor: default;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: transparent;
-  background-color: #fff;
-  background-image: linear-gradient(rgba(55, 108, 140, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(55, 108, 140, 0.14) 1px, transparent 1px);
-  background-size: 8.75rem 8.75rem;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* the grid lives on <html>; a transparent body lets the aurora layer show */
+  background: transparent;
+}
+
+::selection {
+  background: #bf5af2;
+  color: #fff;
+}
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------
+   Apple-style gradient text
+   A seamless, slowly flowing gradient clipped to the glyphs.
+   --------------------------------------------------------------- */
+.apple-gradient {
+  background-image: linear-gradient(100deg,
+      var(--ag-1) 0%,
+      var(--ag-2) 25%,
+      var(--ag-3) 50%,
+      var(--ag-4) 75%,
+      var(--ag-1) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* room for script-font swashes so they are not clipped */
+  padding: 0.12em 0.1em;
+  margin: -0.12em -0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: apple-flow 9s linear infinite;
+}
+
+/* Deep variant: stays readable on bright photos (turquoise hero sky) */
+.apple-gradient--deep {
+  --ag-1: #1d2b8f;
+  --ag-2: #6d28d9;
+  --ag-3: #c0267d;
+  --ag-4: #e0451f;
+}
+
+/* Cool variant: blue → violet */
+.apple-gradient--cool {
+  --ag-1: #0a84ff;
+  --ag-2: #5e5ce6;
+  --ag-3: #bf5af2;
+  --ag-4: #64d2ff;
+}
+
+@keyframes apple-flow {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+.apple-gradient-bg {
+  background-image: linear-gradient(100deg, #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
+  background-size: 200% 100%;
+  animation: apple-flow 9s linear infinite;
+}
+
+/* Outline text used in the velocity marquee */
+.text-outline {
+  -webkit-text-stroke: 1.5px rgba(10, 10, 20, 0.85);
+  color: transparent;
+}
+
+/* Animated conic "glow ring". Put it on a WRAPPER; the filled element
+   (button / card) goes inside so it paints above the ring and glow. */
+@property --ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-ring {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from var(--ring-angle), #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
+  animation: ring-spin 5s linear infinite;
+}
+
+.glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  z-index: -2;
+  border-radius: inherit;
+  background: conic-gradient(from var(--ring-angle), #0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff);
+  filter: blur(22px);
+  opacity: 0.55;
+  animation: ring-spin 5s linear infinite;
+}
+
+@keyframes ring-spin {
+  to {
+    --ring-angle: 360deg;
+  }
+}
+
+/* Soft drifting aurora blobs behind the light sections */
+@keyframes aurora-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate3d(6vw, -4vh, 0) scale(1.08);
+  }
+
+  66% {
+    transform: translate3d(-5vw, 5vh, 0) scale(0.95);
+  }
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  animation: aurora-drift 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-gradient,
+  .apple-gradient-bg,
+  .glow-ring::before,
+  .glow-ring::after,
+  .aurora-blob {
+    animation: none !important;
+  }
 }
 
 h1,
@@ -103,14 +252,15 @@ h6 {
   position: relative;
   text-align: left;
   transform-origin: center;
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition: translate 500ms var(--ease-fluid), rotate 500ms var(--ease-fluid), box-shadow 400ms ease;
   width: min(17rem, 18vw);
 }
 
 .home-stat-card:hover {
-  box-shadow: 0.85rem 1rem 0 rgba(25, 30, 28, 0.18);
-  transform: translateY(-0.45rem) rotate(0deg);
-  z-index: 2;
+  box-shadow: 0.85rem 1rem 0 rgba(25, 30, 28, 0.18), 0 30px 60px -20px rgba(191, 90, 242, 0.35);
+  translate: 0 -0.6rem;
+  rotate: 0deg;
+  z-index: 5;
 }
 
 .home-stat-card::after {
@@ -170,23 +320,32 @@ h6 {
 }
 
 .home-stat-card--one {
-  transform: rotate(-4deg) translateY(0.35rem);
+  rotate: -4deg;
+  translate: 0 0.35rem;
   z-index: 1;
 }
 
 .home-stat-card--two {
-  transform: rotate(5deg) translate(-0.3rem, 0.75rem);
+  rotate: 5deg;
+  translate: -0.3rem 0.75rem;
   z-index: 2;
 }
 
 .home-stat-card--three {
-  transform: rotate(-7deg) translate(0.15rem, -0.55rem);
+  rotate: -7deg;
+  translate: 0.15rem -0.55rem;
   z-index: 3;
 }
 
 .home-stat-card--four {
-  transform: rotate(-2deg) translateY(0.7rem);
+  rotate: -2deg;
+  translate: 0 0.7rem;
   z-index: 1;
+}
+
+.home-stat-card strong .apple-gradient {
+  padding-inline: 0.04em;
+  margin-inline: -0.04em;
 }
 
 @media (max-width: 900px) {
@@ -215,7 +374,8 @@ h6 {
   .home-stat-card--three,
   .home-stat-card--four {
     min-height: 12rem;
-    transform: none;
+    rotate: none;
+    translate: none;
     width: 100%;
   }
 }
@@ -664,8 +824,8 @@ h6 {
 }
 
 .personal-artwork {
-  top: 27%;
-  right: 8%;
+  top: 6%;
+  right: 7%;
   width: clamp(100px, 15vw, 210px);
   height: 180px;
 }

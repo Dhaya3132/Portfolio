@@ -1,15 +1,9 @@
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import {
-  FiArrowUpRight,
-  FiGithub,
-  FiMove,
-  FiMousePointer,
-  FiFileText,
-  FiImage,
-  FiMail,
-} from "react-icons/fi";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FiArrowUpRight, FiMove } from "react-icons/fi";
 import ImageWithSkeleton from "./ui/ImageWithSkeleton";
+import SplitText from "./ui/SplitText";
+import { EASE_FLUID } from "../utils/motion";
 
 /* =========================================================
    COMBINED WORKS
@@ -228,6 +222,11 @@ const works = [
 
 const featuredWorks = works.slice(0, 5);
 
+const edgeMask = {
+  maskImage: "linear-gradient(to bottom, transparent, #000 10rem, #000 calc(100% - 8rem), transparent)",
+  WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 10rem, #000 calc(100% - 8rem), transparent)",
+};
+
 const cardLayout = [
   { left: "7%", top: "5%", rotate: -7, z: 3 },
   { left: "36%", top: "3%", rotate: 4, z: 2 },
@@ -245,33 +244,39 @@ const WorkCard = ({ work, index, constraintsRef }) => {
       dragConstraints={constraintsRef}
       dragElastic={0.12}
       dragMomentum={true}
+      data-cursor
+      data-cursor-label="Drag"
       whileHover={{
-        scale: 1.03,
+        scale: 1.04,
         rotate: 0,
         zIndex: 100,
+        transition: { type: "spring", stiffness: 260, damping: 20 },
       }}
       whileDrag={{
-        scale: 1.06,
+        scale: 1.08,
         rotate: 0,
         zIndex: 200,
         cursor: "grabbing",
       }}
       initial={{
         opacity: 0,
-        y: 60,
-        scale: 0.92,
-        rotate: cardLayout[index].rotate,
+        y: 140,
+        scale: 0.85,
+        rotate: cardLayout[index].rotate * 3,
+        filter: "blur(10px)",
       }}
-      animate={{
+      whileInView={{
         opacity: 1,
         y: 0,
         scale: 1,
         rotate: cardLayout[index].rotate,
+        filter: "blur(0px)",
       }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{
-        duration: 0.8,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 1.2,
+        delay: index * 0.1,
+        ease: EASE_FLUID,
       }}
       style={{
         left: cardLayout[index].left,
@@ -381,6 +386,8 @@ const WorkCard = ({ work, index, constraintsRef }) => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Open ${work.title}`}
+                data-cursor-label="Open"
                 onPointerDown={(e) => e.stopPropagation()}
                 className="
                   flex
@@ -415,72 +422,52 @@ const WorkCard = ({ work, index, constraintsRef }) => {
 
 const CreativeWorks = () => {
   const constraintsRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  // The painting drifts slower than the page for a sense of depth.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (
     <section
+      ref={sectionRef}
       id="works"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        h-fit
-      "
-      style={{
-        backgroundImage: "url('/assests/about/mountains.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative isolate h-fit w-full overflow-hidden"
     >
-      <div className="relative z-9999 mx-auto ">
+      {/* masked so the painting dissolves into the grid paper above/below */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden" style={edgeMask}>
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
+          style={{
+            y: bgY,
+            backgroundImage: "url('/assests/about/mountains.webp')",
           }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
-          className="flex flex-col items-center text-center    "
-        >
-          <h2
-            className="
-              mt-10
-              max-w-4xl
-              font-display
-              text-4xl
-              leading-[0.9]
-              text-black
-              sm:text-5xl
-              md:text-7xl
-              lg:text-8xl
-            "
-          >
-            Things I've designed & built
-           
-          </h2>
+          className="absolute inset-x-0 -inset-y-[14%] bg-cover bg-center bg-no-repeat"
+        />
+      </div>
 
-          <p
-            className="
-              mt-8
-              max-w-2xl
-              text-base
-              leading-relaxed
-              text-black/50
-              md:text-lg
-            "
+      <div className="relative z-10 mx-auto px-4 pt-16">
+        <div className="flex flex-col items-center text-center">
+          <SplitText
+            as="h2"
+            text="Things I've designed & built"
+            gradient={[2, 4]}
+            className="max-w-4xl font-display text-5xl leading-[0.95] text-black sm:text-6xl md:text-7xl lg:text-8xl"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4, ease: EASE_FLUID }}
+            className="mt-8 max-w-2xl text-base leading-relaxed text-black/60 md:text-lg"
           >
             A collection of interfaces, products, experiments and visual
             explorations — connected by curiosity rather than a category.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
       </div>
 
       <div
@@ -532,20 +519,28 @@ const CreativeWorks = () => {
             bottom-6
             left-1/2
             z-30
-            flex
+            hidden
             -translate-x-1/2
             items-center
             gap-2
             whitespace-nowrap
-            text-[9px]
+            rounded-full
+            border
+            border-white/60
+            bg-white/60
+            px-4
+            py-2
+            text-[10px]
             uppercase
             tracking-[0.2em]
-            text-black/30
+            text-black/60
+            backdrop-blur-md
             md:bottom-8
+            md:flex
           "
         >
-          <FiMousePointer size={12} />
-
+          <FiMove size={12} />
+          Drag the cards around
         </motion.div>
       </div>
 

@@ -12,6 +12,7 @@ const ImageWithSkeleton = ({
   imgClassName = "",
   skeletonClassName = "",
   draggable,
+  loading = "lazy",
   ...motionProps
 }) => {
   const [status, setStatus] = useState("loading");
@@ -40,11 +41,13 @@ const ImageWithSkeleton = ({
           src={src}
           alt={alt}
           draggable={draggable}
+          loading={loading}
+          decoding="async"
           onLoad={() => setStatus("loaded")}
           onError={() => setStatus("error")}
           className={`h-full w-full ${
             status === "loaded" ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-300 ${imgClassName}`}
+          } transition-opacity duration-700 ${imgClassName}`}
         />
       )}
     </motion.span>

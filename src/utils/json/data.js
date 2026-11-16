@@ -50,8 +50,8 @@ import tailwind from "/assests/png/icons8-tailwind-css-240.png";
 import atom from "/assests/png/atom.png";
 import css from "/assests/png/css-3.png";
 import html from "/assests/png/html-5.png";
-import flower1 from "/assests/about/flower1.png";
-import flower2 from "/assests/about/flower2.png";
+import flower1 from "/assests/about/flower1.webp";
+import flower2 from "/assests/about/flower2.webp";
 
 export const techStack = [
   { label: "flower", icon: flower2 },

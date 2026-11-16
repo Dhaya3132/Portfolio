@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { phases } from "./workprocess/data";
+import SplitText from "./ui/SplitText";
+import { EASE_FLUID, SPRING_SNAPPY } from "../utils/motion";
 import {
   DesignVisual,
   StructureVisual,
@@ -157,37 +159,58 @@ const WorkProcess = () => {
       <div className="relative mx-auto w-full rounded-[2rem] px-5 py-10 sm:px-8 sm:py-14">
         <div className="flex flex-col gap-6 rounded-4xl p-4 sm:p-6 lg:gap-8 lg:p-8">
           <div className="w-full text-start flex md:flex-row flex-col items-center gap-5">
-            <motion.p
-              initial={{ y: 10, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15 }}
+            <SplitText
+              as="p"
+              text="From design to deployment, the structure, code quality, and discipline behind every build."
+              gradient={[1, 2, 3, 9]}
+              variant="cool"
+              stagger={0.045}
               className="max-w-5xl font-display mx-auto mb-10 text-blue-500 text-4xl leading-tight sm:text-5xl lg:text-7xl"
+            />
+            <motion.p
+              aria-hidden="true"
+              className="text-9xl"
+              initial={{ opacity: 0, scale: 0.4, rotate: -40 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 120, damping: 10, delay: 0.6 }}
             >
-              From design to deployment, the structure, code quality, and
-              discipline behind every build.
-            </motion.p>
-            <motion.p className="text-9xl -rotate-9" animate={{ y: [0, -14, 0], rotate: [-8, -2, -8] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
-              👀
+              <motion.span
+                className="inline-block"
+                animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                👀
+              </motion.span>
             </motion.p>
           </div>
 
 
-          <div className="relative w-full">
-            <div
+          <motion.div
+            className="relative w-full"
+            initial={{ opacity: 0, y: 80, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: EASE_FLUID }}
+          >
+            {/* offset gradient "shadow" that drifts in after the card lands */}
+            <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 translate-x-[10px] translate-y-[10px] rounded-2xl bg-[linear-gradient(115deg,#ff2d95_0%,#fb4d7c_45%,#ff8a3d_100%)]"
+              initial={{ x: 0, y: 0, opacity: 0 }}
+              whileInView={{ x: 10, y: 10, opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: EASE_FLUID }}
+              className="apple-gradient-bg pointer-events-none absolute inset-0 rounded-2xl"
             />
 
             <div className="relative w-full bg-white border-2 border-black p-5 rounded-2xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activePhase ? activePhase.id : "idle"}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -12, filter: "blur(10px)" }}
+                  transition={{ duration: 0.45, ease: EASE_FLUID }}
                   className="w-full rounded-3xl p-2 sm:p-4"
                 >
                   {activePhase ? (
@@ -226,20 +249,22 @@ const WorkProcess = () => {
                           </div>
                         </div>
 
-                        <div className="max-h-[300px] overflow-y-auto pr-1">
+                        <div className="max-h-[300px] overflow-y-auto pr-1" data-lenis-prevent>
                           <div className="space-y-3">
                             {activePhase.children.map((child, index) => {
                               const ChildIcon = child.icon;
                               return (
                                 <motion.div
                                   key={child.id}
-                                  initial={{ opacity: 0, x: 10 }}
+                                  initial={{ opacity: 0, x: 24 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{
-                                    delay: index * 0.05,
-                                    duration: 0.25,
+                                    delay: 0.15 + index * 0.08,
+                                    duration: 0.6,
+                                    ease: EASE_FLUID,
                                   }}
-                                  className="rounded-2xl border border-gray-200/80 bg-white/80 p-3"
+                                  whileHover={{ x: -4 }}
+                                  className="rounded-2xl border border-gray-200/80 bg-white/80 p-3 transition-shadow duration-300 hover:shadow-[0_12px_30px_-12px_rgba(94,92,230,0.35)]"
                                 >
                                   <div className="flex items-start gap-3">
                                     <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-700">
@@ -281,15 +306,28 @@ const WorkProcess = () => {
                       return (
                         <motion.button
                           key={phase.id}
-                          whileHover={{ y: -1, scale: 1 }}
-                          whileTap={{ scale: 0.99 }}
+                          whileHover={{ y: -3 }}
+                          whileTap={{ scale: 0.97 }}
+                          transition={SPRING_SNAPPY}
                           onClick={() => setActivePhaseId(phase.id)}
-                          className={`w-full rounded-2xl p-4 text-left transition-all duration-300 ${
+                          aria-pressed={isActive}
+                          className={`relative isolate w-full rounded-2xl p-4 text-left transition-colors duration-300 ${
                             isActive
-                              ? "bg-pink-600 text-white"
-                              : "bg-white text-gray-900 hover:bg-gray-50" 
+                              ? "text-white"
+                              : "bg-white text-gray-900 hover:bg-gray-50"
                           }`}
                         >
+                          {isActive && (
+                            <motion.span
+                              layoutId="process-pill"
+                              transition={SPRING_SNAPPY}
+                              className="apple-gradient-bg absolute inset-0 -z-10 rounded-2xl"
+                              style={{
+                                backgroundImage:
+                                  "linear-gradient(100deg, #db2777, #bf5af2, #5e5ce6, #db2777)",
+                              }}
+                            />
+                          )}
                           <div className="flex items-start gap-3">
                             <span
                               className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
@@ -307,7 +345,7 @@ const WorkProcess = () => {
                                 >
                                   0{index + 1}
                                 </p>
-                                <span className="text-[10px] text-gray-400">
+                                <span className={`text-[10px] ${isActive ? "text-white/80" : "text-gray-400"}`}>
                                   {phase.children.length} steps
                                 </span>
                               </div>
@@ -330,7 +368,7 @@ const WorkProcess = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
