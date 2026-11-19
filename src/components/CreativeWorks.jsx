@@ -336,8 +336,10 @@ const WorkCard = ({ work, index, constraintsRef }) => {
           <div className="absolute left-3 top-3">
             <span
               className="
+                liquid-glass
+                liquid-glass-sm
                 rounded-full
-                bg-white/90
+                bg-white/70
                 px-2.5
                 py-1.5
                 text-[9px]
@@ -345,7 +347,6 @@ const WorkCard = ({ work, index, constraintsRef }) => {
                 uppercase
                 tracking-[0.2em]
                 text-black
-                backdrop-blur-md
               "
             >
               {work.label}
@@ -357,14 +358,16 @@ const WorkCard = ({ work, index, constraintsRef }) => {
           <div className="absolute right-3 top-3">
             <span
               className="
+                liquid-glass
+                liquid-glass-sm
+                liquid-glass-dark
                 rounded-full
-                bg-black/70
+                bg-black/55
                 px-2.5
                 py-1.5
                 text-[9px]
                 tracking-widest
                 text-white
-                backdrop-blur-md
               "
             >
               {work.year}
@@ -513,6 +516,7 @@ const CreativeWorks = () => {
             delay: 1,
           }}
           className="
+            liquid-glass
             absolute
             bottom-6
             left-1/2
@@ -523,16 +527,13 @@ const CreativeWorks = () => {
             gap-2
             whitespace-nowrap
             rounded-full
-            border
-            border-white/60
-            bg-white/60
+            bg-white/40
             px-4
             py-2
             text-[10px]
             uppercase
             tracking-[0.2em]
             text-black/60
-            backdrop-blur-md
             md:bottom-8
             md:flex
           "

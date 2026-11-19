@@ -68,7 +68,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 1, ease: EASE_FLUID }}
-          className="relative z-10 max-w-3xl rounded-[2rem] border border-white/60 bg-white/45 p-6 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.45)] backdrop-blur-xl sm:p-10"
+          className="liquid-glass liquid-glass-lg relative z-10 max-w-3xl rounded-[2rem] bg-white/35 p-6 sm:p-10"
         >
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.3em] text-black/50">
             Contact
@@ -113,7 +113,7 @@ const Contact = () => {
               <button
                 type="button"
                 onClick={copyEmail}
-                className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white/70 px-5 py-3.5 text-sm text-black backdrop-blur-md transition-colors duration-300 hover:bg-white"
+                className="liquid-glass flex items-center gap-2 rounded-2xl bg-white/50 px-5 py-3.5 text-sm text-black transition-colors duration-300 hover:bg-white/80"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
@@ -141,7 +141,7 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/60 text-black/80 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white ${social.hover}`}
+                      className={`liquid-glass liquid-glass-sm flex h-12 w-12 items-center justify-center rounded-full bg-white/45 text-black/80 transition-all duration-300 hover:-translate-y-1 hover:bg-white/80 ${social.hover}`}
                     >
                       <Icon className="text-2xl" />
                     </a>
@@ -157,7 +157,7 @@ const Contact = () => {
           <button
             type="button"
             onClick={() => scrollTo("top")}
-            className="group flex items-center gap-2 rounded-full border border-white/50 bg-white/15 px-4 py-2 backdrop-blur-md transition-colors duration-300 hover:bg-white/30"
+            className="liquid-glass group flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 transition-colors duration-300 hover:bg-white/30"
           >
             Back to top
             <FiArrowUp className="transition-transform duration-300 group-hover:-translate-y-0.5" />

@@ -66,7 +66,7 @@ const About = () => {
             <div className="min-w-0">
               <motion.p
                 {...enter(0.15)}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/30 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.25em] text-black/75 backdrop-blur-md"
+                className="liquid-glass mb-6 inline-flex items-center gap-2 rounded-full bg-white/25 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.25em] text-black/75"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
@@ -88,7 +88,7 @@ const About = () => {
 
               <motion.div
                 {...enter(0.9)}
-                className="mt-8 max-w-xl rounded-[26px] border border-white/40 bg-white/35 p-5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] backdrop-blur-md md:mt-10"
+                className="liquid-glass liquid-glass-lg mt-8 max-w-xl rounded-[26px] bg-white/30 p-5 md:mt-10"
               >
                 <p className="text-base font-normal leading-relaxed text-black/80 md:text-xl">
                   I design and engineer high-performance web systems that connect
@@ -164,7 +164,7 @@ const About = () => {
                 <button
                   type="button"
                   onClick={() => setIsResumeModalOpen(true)}
-                  className="w-full rounded-2xl border border-white/15 bg-black px-8 py-3 text-center font-light text-white backdrop-blur-md transition-all duration-500 hover:border-black hover:bg-white/70 hover:text-black sm:w-fit"
+                  className="liquid-glass liquid-glass-dark w-full rounded-2xl bg-black px-8 py-3 text-center font-light text-white transition-all duration-500 hover:border-black hover:bg-white/70 hover:text-black sm:w-fit"
                 >
                   Resume
                 </button>

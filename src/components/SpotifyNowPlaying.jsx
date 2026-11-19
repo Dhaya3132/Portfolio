@@ -34,7 +34,7 @@ const SpotifyNowPlaying = () => {
             layout: { duration: 0.5, ease: EASE_FLUID },
           }}
           style={{ borderRadius: expanded ? 16 : 999 }}
-          className={`fixed bottom-4 right-4 z-50 border border-white/10 bg-black/75 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md sm:bottom-6 sm:right-6 ${
+          className={`liquid-glass liquid-glass-dark fixed bottom-4 right-4 z-50 bg-black/65 sm:bottom-6 sm:right-6 ${
             expanded ? "w-[calc(100vw-2rem)] max-w-sm p-3" : "w-auto p-1.5"
           }`}
         >

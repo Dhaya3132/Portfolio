@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { EASE_FLUID } from '../../utils/motion';
 
-const surfaceClass = 'rounded-xl border border-gray-200/80 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-sm';
+const surfaceClass = 'liquid-glass rounded-xl bg-white/60';
 const textClass = 'text-gray-600/80';
 const softTextClass = 'text-gray-500/70';
 const accentClass = 'bg-gray-400/70';
@@ -190,7 +190,7 @@ export const ProductionVisual = ({ items, rootIcon: RootIcon }) => (
                     >
                         {/* counter-rotate so icons stay upright while orbiting */}
                         <motion.div
-                            className="w-9 h-9 rounded-full border border-gray-200/80 bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm"
+                            className="liquid-glass liquid-glass-sm w-9 h-9 rounded-full bg-white/75 flex items-center justify-center"
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1, rotate: -360 }}
                             transition={{

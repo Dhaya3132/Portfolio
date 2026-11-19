@@ -196,6 +196,128 @@ html.is-loading body {
   }
 }
 
+/* ---------------------------------------------------------------
+   Liquid glass
+   Replaces the old frosted look (translucent bg + backdrop-blur-*).
+   Based on the "glass button" snippet, adapted so it can sit on real layouts:
+   - no `filter: contrast()` / `brightness()` on the element or an ancestor:
+     a filter makes the element a backdrop root, so `backdrop-filter` would
+     stop seeing the page behind it (and it would crush text colours).
+   - the gloss layers fill the element (100%, not fixed --w/--h), sit UNDER the
+     content (negative z-index) and never take pointer events.
+   - the lower shade is capped (min(35%, 18px)) so it can't hang off tall cards.
+   - lives in @layer components so Tailwind utilities still win: `fixed` /
+     `absolute` keep working, and bg-* stays on the element for the per-surface
+     tint and hover colours.
+
+   Usage    class="liquid-glass bg-white/25 rounded-2xl ..."
+   Size     + liquid-glass-lg   cards and panels
+            + liquid-glass-sm   small round chips / icon buttons
+   Dark     + liquid-glass-dark on dark surfaces (pair with bg-black/xx)
+   Tweaks   [--glass-tr:9%] gloss reach, [--glass-blur:14px], [--glass-drop:...]
+   Don't also add border / shadow-* / backdrop-blur-*: the class owns those.
+   --------------------------------------------------------------- */
+@layer components {
+  .liquid-glass {
+    --glass-blur: 14px;
+    --glass-sat: 170%;
+    --glass-tr: 14%;
+    --glass-border: rgba(51, 51, 51, 0.1);
+    --glass-hi-a: rgba(255, 255, 255, 0.9);
+    --glass-hi-b: rgba(255, 255, 255, 0.55);
+    --glass-edge: rgba(0, 0, 0, 0.35);
+    --glass-gloss: rgba(255, 255, 255, 0.8);
+    --glass-drop: 0 8px 24px -10px rgba(15, 23, 42, 0.2);
+    position: relative;
+    isolation: isolate;
+    border: 1px double var(--glass-border);
+    box-shadow:
+      inset 2px -2px 1px -1px var(--glass-hi-a),
+      inset -2px 2px 1px -1px var(--glass-hi-a),
+      inset 6px -6px 1px -6px var(--glass-hi-b),
+      inset -6px 6px 1px -6px var(--glass-hi-b),
+      inset 0 0 2px var(--glass-edge),
+      var(--glass-drop);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  }
+
+  /* Cards and panels */
+  .liquid-glass-lg {
+    --glass-blur: 20px;
+    --glass-tr: 12%;
+    --glass-drop: 0 24px 60px -28px rgba(15, 23, 42, 0.4);
+  }
+
+  /* Small round chips and icon buttons: the gloss has to reach further */
+  .liquid-glass-sm {
+    --glass-blur: 12px;
+    --glass-tr: 30%;
+    --glass-drop: 0 6px 16px -8px rgba(15, 23, 42, 0.25);
+  }
+
+  /* Dark surfaces: softer highlights, light hairline instead of a dark one */
+  .liquid-glass-dark {
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-hi-a: rgba(255, 255, 255, 0.45);
+    --glass-hi-b: rgba(255, 255, 255, 0.22);
+    --glass-edge: rgba(255, 255, 255, 0.16);
+    --glass-gloss: rgba(255, 255, 255, 0.32);
+    --glass-drop: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Soft dark band along the lower inside edge: gives the glass its thickness.
+     z-index sits below the -z-10 active-link pill so the pill stays on top. */
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    z-index: -20;
+    top: min(35%, 18px);
+    left: 50%;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    transform: translateX(-50%);
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    filter: blur(8px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Diagonal specular gloss, concentrated in two opposite corners. */
+  .liquid-glass::after {
+    content: "";
+    position: absolute;
+    z-index: -20;
+    inset: 0;
+    border-radius: inherit;
+    filter: blur(7px);
+    background: linear-gradient(45deg,
+        var(--glass-gloss) 0%,
+        transparent var(--glass-tr),
+        transparent calc(100% - var(--glass-tr)),
+        var(--glass-gloss) 100%);
+    pointer-events: none;
+  }
+}
+
+/* The navbar's shadow deepens once the page has scrolled. */
+.liquid-glass[data-scrolled="true"] {
+  --glass-drop: 0 10px 40px -10px rgba(15, 23, 42, 0.28);
+}
+
+/* Browsers without backdrop-filter get a more opaque tint so text stays legible
+   (unlayered on purpose, so it beats the bg-* utilities). */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .liquid-glass-dark {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+}
+
 /* Soft drifting aurora blobs behind the light sections */
 @keyframes aurora-drift {
   0%, 100% {

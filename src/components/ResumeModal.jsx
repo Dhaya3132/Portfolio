@@ -44,7 +44,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                         role="dialog"
                         aria-modal="true"
                         aria-label="Resume"
-                        className="relative w-full max-w-5xl h-[90vh] bg-black/35 rounded-xl border border-white/20 shadow-2xl backdrop-blur-xl flex flex-col overflow-hidden"
+                        className="liquid-glass liquid-glass-lg liquid-glass-dark relative w-full max-w-5xl h-[90vh] bg-black/35 rounded-xl flex flex-col overflow-hidden"
                         initial={{ opacity: 0, scale: 0.9, y: 60, filter: "blur(10px)" }}
                         animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
                         exit={{ opacity: 0, scale: 0.94, y: 30, filter: "blur(8px)" }}

@@ -63,68 +63,68 @@ const Navbar = () => {
       transition={{ duration: 0.7, ease: EASE_FLUID, delay: ready && !scrolled ? 0.5 : 0 }}
       className="fixed inset-x-0 top-3 z-[100] flex justify-center px-3 sm:top-5"
     >
-      <nav
-        aria-label="Primary"
-        className={`relative flex w-full max-w-4xl items-center justify-between gap-2 rounded-full border border-white/50 py-1.5 pl-2 pr-1.5 backdrop-blur-lg transition-[background-color,box-shadow] duration-500 ${
-          scrolled
-            ? "bg-white/70 shadow-[0_10px_40px_-10px_rgba(15,23,42,0.25)]"
-            : "bg-white/35 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.15)]"
-        }`}
-      >
-        <button
-          type="button"
-          onClick={() => go("about")}
-          className="flex items-center gap-2 rounded-full px-3 py-1.5 text-black"
+      <nav aria-label="Primary" className="relative w-full max-w-4xl">
+        <div
+          data-scrolled={scrolled}
+          className={`liquid-glass [--glass-tr:9%] flex w-full items-center justify-between gap-2 rounded-full py-1.5 pl-2 pr-1.5 transition-[background-color,box-shadow] duration-500 ${
+            scrolled ? "bg-white/55" : "bg-white/20"
+          }`}
         >
-          <span className="apple-gradient-bg h-2.5 w-2.5 rounded-full" />
-          <span className="font-display text-xl leading-none">Dhayalan</span>
-        </button>
-
-        <ul className="hidden items-center gap-0.5 md:flex">
-          {LINKS.map((link) => (
-            <li key={link.id}>
-              <button
-                type="button"
-                onClick={() => go(link.id)}
-                className={`relative rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 ${
-                  active === link.id ? "text-white" : "text-black/70 hover:text-black"
-                }`}
-              >
-                {active === link.id && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    transition={SPRING_SNAPPY}
-                    className="absolute inset-0 -z-10 rounded-full bg-black"
-                  />
-                )}
-                {link.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-1">
-          <span className="glow-ring hidden rounded-full sm:inline-flex">
-            <span className="glow-ring__glow" aria-hidden="true" />
-            <span className="glow-ring__ring" aria-hidden="true" />
-            <button
-              type="button"
-              onClick={() => go("contact")}
-              className="group flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-[13px] font-medium text-white"
-            >
-              Let&apos;s talk
-              <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </button>
-          </span>
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white md:hidden"
+            onClick={() => go("about")}
+            className="flex items-center gap-2 rounded-full px-3 py-1.5 text-black"
           >
-            {menuOpen ? <FiX /> : <FiMenu />}
+            <span className="apple-gradient-bg h-2.5 w-2.5 rounded-full" />
+            <span className="font-display text-xl leading-none">Dhayalan</span>
           </button>
+
+          <ul className="hidden items-center gap-0.5 md:flex">
+            {LINKS.map((link) => (
+              <li key={link.id}>
+                <button
+                  type="button"
+                  onClick={() => go(link.id)}
+                  className={`relative rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 ${
+                    active === link.id ? "text-white" : "text-black/70 hover:text-black"
+                  }`}
+                >
+                  {active === link.id && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={SPRING_SNAPPY}
+                      className="absolute inset-0 -z-10 rounded-full bg-black"
+                    />
+                  )}
+                  {link.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-1">
+            <span className="glow-ring hidden rounded-full sm:inline-flex">
+              <span className="glow-ring__glow" aria-hidden="true" />
+              <span className="glow-ring__ring" aria-hidden="true" />
+              <button
+                type="button"
+                onClick={() => go("contact")}
+                className="group flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-[13px] font-medium text-white"
+              >
+                Let&apos;s talk
+                <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </button>
+            </span>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white md:hidden"
+            >
+              {menuOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -134,7 +134,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -10, scale: 0.97, filter: "blur(8px)" }}
               transition={{ duration: 0.4, ease: EASE_FLUID }}
-              className="absolute inset-x-0 top-[calc(100%+0.5rem)] origin-top rounded-3xl border border-white/60 bg-white/85 p-2 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.35)] backdrop-blur-xl md:hidden"
+              className="liquid-glass liquid-glass-lg absolute inset-x-0 top-[calc(100%+0.5rem)] origin-top rounded-3xl bg-white/60 p-2 md:hidden"
             >
               {[...LINKS, { id: "contact", label: "Contact" }].map((link, index) => (
                 <motion.li
